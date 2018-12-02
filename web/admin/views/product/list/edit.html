@@ -1,0 +1,207 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>编辑商品资料</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../css/style/admin.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">编辑商品资料</div>
+          <div class="layui-card-body" pad15>
+            
+            <div class="layui-form" lay-filter="">
+            	
+            	
+              <div class="layui-form-item">
+                <label class="layui-form-label">我的角色</label>
+                <!--<div class="layui-input-inline">
+                  <select name="role" lay-verify="">
+                    <option value="1" selected>超级管理员</option>
+                    <option value="2" disabled>普通管理员</option>
+                    <option value="3" disabled>审核员</option>
+                    <option value="4" disabled>编辑人员</option>
+                  </select> 
+                </div>-->
+                
+                <div class="layui-form-mid layui-word-aux"><!--当前角色不可更改为其它角色-->超级管理员</div>
+                
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="username" value="" readonly class="layui-input layui-display">
+                </div>
+                <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品型号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="model" value="" autocomplete="off" placeholder="请输入商品型号" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品条形码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="barCode" value=""  autocomplete="off" placeholder="请输入商品条形码" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">是否推荐</label>
+                <div class="layui-input-block">
+                  <input type="radio" name="isHot" value="1" title="是">
+                  <input type="radio" name="isHot" value="0" title="否" >
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品图片</label>
+                <div class="layui-input-inline">
+                  <input name="image" id="LAY_avatarSrc" placeholder="商品图片地址" value="" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-btn-container" style="width: auto;">
+                  <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                  </button>
+                  <button class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
+                </div>
+             </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">排序</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="sort" value=""  autocomplete="off"  placeholder="排序" class="layui-input">
+                </div>
+              </div>
+              
+               <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">商品关键字</label>
+                <div class="layui-input-block">
+                  <textarea name="keywords" placeholder="请输入商品关键字" class="layui-textarea"></textarea>
+                </div>
+              </div>
+              
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品描述</label>
+                <div class="layui-input-block">
+                  <textarea id="description" name="description" style="display: none;" ></textarea>
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品参数</label>
+                <div class="layui-input-block">
+                  <textarea id="parame" style="display: none;"></textarea>
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">支持型号_苹果机型</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="iphoneModel" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">支持型号_安卓机型</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="androidModel" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">配件</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="parts" value=""  autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">保修说明</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="warranty" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="setmyinfo">提交</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
+  
+  <script src="../../../layui/layui.js"></script>  
+  <script>
+	layui.config({
+	    base: '../../../js/' //静态资源所在路径
+	}).extend({
+	    index: 'lib/index' //主入口模块
+	}).use(['index','layedit','form','admin'],function(){
+		var layedit = layui.layedit,
+		form = layui.form,
+		admin = layui.admin;
+		
+		// 编辑器上传接口
+		layedit.set({
+		  uploadImage: {
+		    url: '/file/fileManager/upload2' 
+		    ,type: 'post' 
+		  }
+		});
+		
+		//商品描述编辑器
+  		var description = layedit.build('description',{
+  			height: 180,
+  			tool: ['face','image','strong', 'italic', 'underline','del', '|', 'left','center','right','link','unlink','|','code' ]
+  		});
+  		
+  		// 监听提交事件
+  		form.on("submit(setmyinfo)", function(t) {
+		
+		t.field.description = layedit.getContent(description);//商品描述
+		
+		admin.req({
+			url: "/sys/sysuser/updataUserPassword",
+			type: "post",
+			data: t.field,
+			done: function(data) {
+				if(data.result){
+					layer.msg(data.msg,{
+						time: 2000
+					},function(){
+						window.location.reload();
+					});
+					
+				}else{
+					layer.msg(data.msg, {
+					    offset: '15px'
+					    ,icon: 2
+					  });
+				}
+			}
+		})
+		
+		//return layer.msg(JSON.stringify(t.field)), !1
+	});
+  		
+	});
+  </script>
+</body>
+</html>

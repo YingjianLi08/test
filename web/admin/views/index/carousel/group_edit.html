@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>轮播管理 - 轮播分组</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layui/css/layui.css" media="all">
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">分组编号</label>
+      <div class="layui-input-inline">
+        <input type="text" name="code" lay-verify="required" placeholder="分组编号" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">分组名称</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name" lay-verify="required" placeholder="分组名称" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">分组类型</label>
+      <div class="layui-input-inline">
+        <select name="type" lay-verify="required">
+          <option value="">请选择类型</option>
+          <option value="0">英文</option>
+          <option value="1" selected="selected">中文</option>
+        </select>
+      </div>
+    </div>
+     <div class="layui-form-item">
+      <label class="layui-form-label">排序</label>
+      <div class="layui-input-inline">
+        <input type="text" name="sort" placeholder="排序" lay-verify="number" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">发布状态</label>
+      <div class="layui-input-inline">
+        <input type="checkbox" lay-verify="required" lay-filter="status" name="status1" lay-skin="switch" lay-text="已发布|待发布" checked>
+      </div>
+      
+      
+      <!--<div class="layui-input-inline" id="view">
+      	<script id="demo" type="text/html">
+        	<input type="checkbox" lay-verify="required" lay-filter="status" name="status1" lay-skin="switch" lay-text="已发布|待发布" {{d.data.status1 == '1' ? 'checked':''}}>
+    		</script>
+      </div>-->
+      
+    </div>
+    <div class="layui-form-item layui-hide">
+      <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit" value="确认添加">
+      <input type="button" lay-submit lay-filter="layuiadmin-app-form-edit" id="layuiadmin-app-form-edit" value="确认编辑">
+    </div>
+  </div>
+
+  <script src="../../../layui/layui.js"></script> 
+  <script>
+  layui.config({
+    base: '../../../js/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form','admin','laytpl'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,admin = layui.admin
+    ,router = layui.router()
+    ,search = router.search
+    ,laytpl = layui.laytpl;
+    
+    
+    var id = getQueryString("id");
+		
+		if(id!=null){
+			
+			admin.req({
+				url: "/sys/carouselgroup/init",
+				type: "get",
+				data: {id:id},
+				done: function(data) {
+						$("input[name='name']").val(data.data.name);
+						$("input[name='code']").val(data.data.code);
+	//					$("input[name='type']").val(data.data.type);
+						//$("select[name=type]").empty();
+						//$("input[name='type'] option[text='"+data.data.type+"']").attr("selected",true);
+						$("input[name='sort']").val(data.data.sort);
+						
+//						$("input[name='status1']").attr("checked","checked");
+						if(data.data.status1== "1"){
+			    		
+			    	}else{
+	//		    		$("input[name='status1']").remove("checked");
+			    	}
+			    	
+//			    	var getTpl=document.getElementById('demo').innerHTML
+//								,view = document.getElementById('view');
+//						laytpl(getTpl).render(data, function(html){
+//						  view.innerHTML = html;
+//						});
+						
+				}
+			});	
+		}else{
+			
+		}
+			
+		
+	form.render();
+    
+    
+    //监听提交
+    form.on('submit(layuiadmin-app-form-submit)', function(data){
+    	if(data.field.status1== "on"){
+    		data.field.status1="1"
+    	}else{
+    		data.field.status1="0"
+    	}
+     
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引  
+		
+      //提交 Ajax 成功后，关闭当前弹层并重载表格
+      //$.ajax({});
+//    alert(id);
+      if(id!=null){
+      	//修改
+      	data.field.id = id;
+ 				var field = data.field; //获取提交的字段
+      	console.log(field);
+      	admin.req({
+					url: "/sys/carouselgroup/updateSave",
+					type: "post",
+					data: field,
+					done: function(data) {
+						parent.layui.table.reload('LAY-app-product-list'); //重载表格
+				      	parent.layer.close(index); //再执行关闭 
+					}
+				});	
+      }else{
+      	//添加
+      	var field = data.field; //获取提交的字段
+      	admin.req({
+					url: "/sys/carouselgroup/addSave",
+					type: "post",
+					data: field,
+					done: function(data) {
+						parent.layui.table.reload('LAY-app-product-list'); //重载表格
+				      	parent.layer.close(index); //再执行关闭 
+					}
+				});	
+      }
+			
+      
+    });
+  })
+  
+  
+  
+  function getQueryString(name) {
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	    var r = window.location.search.substr(1).match(reg);
+	    if (r != null) return unescape(r[2]); return null;
+	}
+  </script>
+</body>
+</html>
