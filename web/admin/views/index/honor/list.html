@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> 轮播管理 - 轮播列表</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../css/style/admin.css" media="all">
+</head>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">轮播名称</label>
+            <div class="layui-input-inline">
+              <input type="text" name="name" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-inline">
+              <input type="text" name="title" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">分组</label>
+            <div class="layui-input-inline">
+              <select name="type">
+                <option value="">请选择类型</option>
+                <!--<option value="0">英文</option>
+                <option value="1">中文</option>-->
+              </select>
+            </div>
+          </div>
+          <div class="layui-inline">
+            <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-product-search">
+              <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-card-body">
+        <div style="padding-bottom: 10px;">
+          <button class="layui-btn layuiadmin-btn-list" data-type="batchdel">删除</button>
+          <button class="layui-btn layuiadmin-btn-list" data-type="add">添加</button>
+        </div>
+        <table id="LAY-app-product-list" lay-filter="LAY-app-product-list"></table>
+        
+        <script type="text/html" id="imageP">
+        	<img src="{{d.src}}" />
+        </script>
+        
+        <script type="text/html" id="buttonTpl">
+          {{#  if(d.status1== 1){ }}
+            <button class="layui-btn layui-btn-xs">已发布</button>
+          {{#  } else if(d.status1== 0) { }}
+            <button class="layui-btn layui-btn-primary layui-btn-xs">待发布</button>
+          {{#  } }}
+        </script>
+        <script type="text/html" id="table-product-list">
+          <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+        </script>
+      </div>
+    </div>
+  </div>
+
+   <script src="../../../layui/layui.js"></script> 
+  <script>
+  layui.config({
+     base: '../../../js/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index','table', 'form','laydate','admin'], function(){
+		
+		 var $ = layui.$
+    ,form = layui.form
+    ,table = layui.table
+    ,laydate = layui.laydate
+    ,admin = layui.admin;
+  	
+  	laydate.render({
+    	elem: '#test1'
+  	});
+  	
+  	// 绑定回车事件
+  	$(document).on('keydown', function(e){  //document为当前元素，限制范围，如果不限制的话会一直有事件
+		    if(e.keyCode == 13){
+		      //监听搜索
+		      console.log(form);
+			    var field = form.field;
+		      //执行重载
+		      table.reload('LAY-app-product-list', {
+		        where: field
+		      });
+		    }
+		})
+  	
+    
+    //监听搜索
+    form.on('submit(LAY-app-product-search)', function(data){
+      var field = data.field;
+      
+      //执行重载
+      table.reload('LAY-app-product-list', {
+        where: field
+      });
+    });
+    
+    // 加载数据
+    table.render({
+		elem: "#LAY-app-product-list",
+		url: "/sys/carouselinfo/list",
+		cols: [
+			[{
+				type: "checkbox",
+				fixed: "left"
+			},  {
+				field: "name",
+				title: "轮播名称",
+				minWidth: 100
+			}, {
+				field: "title",
+				title: "轮播标题"
+			}, {
+				field: "groupId",
+				title: "分组"
+			},{
+//				field: "src",
+				title: "图片",
+				templet:"#imageP"
+			}, {
+				field: "sort",
+				title: "排序",
+				sort: !0
+			}, {
+				field: "status1",
+				title: "状态",
+				templet: "#buttonTpl",
+				minWidth: 80,
+				align: "center"
+			}, {
+				title: "操作",
+				minWidth: 150,
+				align: "center",
+				fixed: "right",
+				toolbar: "#table-product-list"
+			}]
+		],
+			page: true,
+			limit: 10,
+			limits: [10, 15, 20, 25, 30],
+			text: "对不起，加载出现异常！"
+		})
+    
+    var active = {
+      batchdel: function(){
+        var checkStatus = table.checkStatus('LAY-app-product-list')
+        ,checkData = checkStatus.data; //得到选中的数据
+
+        if(checkData.length === 0){
+          return layer.msg('请选择数据');
+        }
+      
+        layer.confirm('确定删除吗？', function(index) {
+					var ids = "";
+          $.each(checkData, function(e,v) {
+          	ids += v.id + " ";
+          });
+          //执行 Ajax 后重载
+          admin.req({
+						url: "/sys/carouselinfo/deleteByIds",
+						type: "post",
+						data: {ids:ids},
+						done: function(e) {
+						 	table.reload('LAY-app-product-list'); //重载表格
+					    layer.close(index); //再执行关闭 
+          		layer.msg('已删除');
+						}
+					});	
+          
+        });
+      },
+      add: function(){
+        layer.open({
+          type: 2
+          ,title: '添加轮播信息'
+          ,content: 'edit.html'
+          ,maxmin: true
+          ,area: ['450px', '90%']
+          ,btn: ['确定', '取消']
+          ,yes: function(index, layero){
+            //点击确认触发 iframe 内容中的按钮提交
+            var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+            submit.click();
+          }
+        }); 
+      }
+    }; 
+
+    $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+    
+    
+    table.on("tool(LAY-app-product-list)", function(t) {
+  	
+		var i = t.data;
+		if("del" === t.event) layer.confirm("确定删除此轮播信息？", function(e) {
+//			t.del(), layer.close(e)
+				admin.req({
+					url: "/sys/carouselinfo/deleteById",
+					type: "post",
+					data: {id:i.id},
+					done: function(data) {
+						layui.table.reload('LAY-app-product-list'); //重载表格
+				    layer.close(e); //再执行关闭 
+					}
+				});	
+		});
+		else if("edit" === t.event) {
+			$(t.tr);
+			layer.open({
+				type: 2,
+				title: "编辑轮播信息",
+				content: "../../../views/index/carousel/edit.html?id=" + i.id,
+				maxmin: true,
+				area: ["450px", "90%"],
+				btn: ["确定", "取消"],
+				yes: function(e, i) {
+					var submit = i.find('iframe').contents().find("#layuiadmin-app-form-submit");
+        	submit.click();
+				},
+				success: function(t, e) {
+//					var n = t.find("iframe").contents().find("#layuiadmin-app-form-tags").click();
+//					n.find('input[name="tags"]').val(i.tags)
+				}
+			})
+		}
+  });
+
+  });
+  
+  
+  </script>
+</body>
+</html>

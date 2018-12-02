@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmyjn.product.info.dao.mapper.ProductInfoMapper">
+
+<!-- **************以下映射必须与数据库一致 不要更改，除非数据库改变**************** -->
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zmyjn.product.info.entity.ProductInfo">
+				
+		insert into product_info
+		(
+			code,
+			name,
+			price,
+			image,
+			unit,
+			bar_code,
+			stock_count,
+			type_id,
+			status1,
+			remark,
+			create_by,
+			create_time,
+			update_by,
+			update_time
+		)
+		values	
+		(	
+			#{code},
+			#{name},
+			#{price},
+			#{image},
+			#{unit},
+			#{barCode},
+			#{stockCount},
+			#{typeId},
+			#{status1},
+			#{remark},
+			#{createBy},
+			#{createTime},
+			#{updateBy},
+			#{updateTime}
+		)	
+
+	</insert>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from product_info 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="deleteByIds" parameterType="java.util.Collection">
+     	delete from product_info 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+  	 
+  	 <delete id="logicDelete" parameterType="java.lang.Integer">
+		update product_info set status1 = '-1' 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="logicDeleteByIds" parameterType="java.util.Collection">
+     	update product_info set status1 = '-1' 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+	
+	<update id="update" parameterType="com.zmyjn.product.info.entity.ProductInfo" >
+			
+		update product_info 	
+		<set> 	
+			code=#{code},
+			name=#{name},
+			price=#{price},
+			image=#{image},
+			unit=#{unit},
+			bar_code=#{barCode},
+			stock_count=#{stockCount},
+			type_id=#{typeId},
+			status1=#{status1},
+			remark=#{remark},
+			create_by=#{createBy},
+			create_time=#{createTime},
+			update_by=#{updateBy},
+			update_time=#{updateTime}
+		</set> 	
+		where 
+		ID=#{id} 	
+
+	</update>
+	
+	<update id="updateWithIf" parameterType="com.zmyjn.product.info.entity.ProductInfo" >
+			
+		update product_info 	
+		<set> 	
+			<if test=" code!=null ">	
+				code=#{code},	
+			</if>	
+			<if test=" name!=null ">	
+				name=#{name},	
+			</if>	
+			<if test=" price!=null ">	
+				price=#{price},	
+			</if>	
+			<if test=" image!=null ">	
+				image=#{image},	
+			</if>	
+			<if test=" unit!=null ">	
+				unit=#{unit},	
+			</if>	
+			<if test=" barCode!=null ">	
+				bar_code=#{barCode},	
+			</if>	
+			<if test=" stockCount!=null ">	
+				stock_count=#{stockCount},	
+			</if>	
+			<if test=" typeId!=null ">	
+				type_id=#{typeId},	
+			</if>	
+			<if test=" status1!=null ">	
+				status1=#{status1},	
+			</if>	
+			<if test=" remark!=null ">	
+				remark=#{remark},	
+			</if>	
+			<if test=" createBy!=null ">	
+				create_by=#{createBy},	
+			</if>	
+			<if test=" createTime!=null ">	
+				create_time=#{createTime},	
+			</if>	
+			<if test=" updateBy!=null ">	
+				update_by=#{updateBy},	
+			</if>	
+			<if test=" updateTime!=null ">	
+				update_time=#{updateTime},	
+			</if>	
+		</set>	
+		where 	
+		ID=#{id} 	
+
+	</update>
+	
+	<!-- *************************************************************************** -->
+	<!-- **************以下映射根据业务做相应调整**************** -->
+	<!-- *************************************************************************** -->
+  	
+  	<delete id="deleteByMap" parameterType="java.util.Map">
+    	delete from product_info 	 
+    	<where>
+    		
+    	</where>
+  	</delete>
+	
+	<select id="findById" parameterType="java.lang.Integer" resultType="com.zmyjn.product.info.entity.ProductInfo">
+				
+		select  	
+			a.id id,
+			a.code code,
+			a.name name,
+			a.price price,
+			a.image image,
+			a.unit unit,
+			a.bar_code barCode,
+			a.stock_count stockCount,
+			a.type_id typeId,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from product_info a	
+
+		where a.Id=#{id}	
+	</select>
+
+	<select id="findListByMap" parameterType="java.util.Map" resultType="com.zmyjn.product.info.entity.ProductInfo">
+		
+				
+		select  	
+			a.id id,
+			a.code code,
+			a.name name,
+			a.price price,
+			a.image image,
+			a.unit unit,
+			a.bar_code barCode,
+			a.stock_count stockCount,
+			a.type_id typeId,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from product_info a	
+
+		
+		<where>
+			
+		</where>
+
+	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.zmyjn.product.info.entity.ProductInfo">
+		
+		
+				
+		select  	
+			a.id id,
+			a.code code,
+			a.name name,
+			a.price price,
+			a.image image,
+			a.unit unit,
+			a.bar_code barCode,
+			a.stock_count stockCount,
+			a.type_id typeId,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from product_info a	
+
+		
+		<where>
+			<if test="searchKeys!= null ">
+				AND ( 1=2
+				<foreach collection="searchKeys" index="index" item="item" >
+					 OR a.id like #{item}
+				</foreach> 
+				)
+			</if>
+		</where>
+
+		
+	</select>
+	
+	<select id="findOneByMap" parameterType="java.util.Map" resultType="com.zmyjn.product.info.entity.ProductInfo">
+				
+		select  	
+			a.id id,
+			a.code code,
+			a.name name,
+			a.price price,
+			a.image image,
+			a.unit unit,
+			a.bar_code barCode,
+			a.stock_count stockCount,
+			a.type_id typeId,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from product_info a	
+
+		<where>
+		
+		</where>
+		limit 1
+	</select>
+</mapper>
+	

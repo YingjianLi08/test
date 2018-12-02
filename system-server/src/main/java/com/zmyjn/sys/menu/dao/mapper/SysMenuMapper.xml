@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmyjn.sys.menu.dao.mapper.SysMenuMapper">
+
+<!-- **************以下映射必须与数据库一致 不要更改，除非数据库改变**************** -->
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zmyjn.sys.menu.entity.SysMenu">
+				
+		insert into sys_menu
+		(
+			pid,
+			name,
+			title,
+			jump,
+			icon,
+			spread,
+			sort,
+			status,
+			remark,
+			create_by,
+			create_time,
+			update_by,
+			update_time
+		)
+		values	
+		(	
+			#{pid},
+			#{name},
+			#{title},
+			#{jump},
+			#{icon},
+			#{spread},
+			#{sort},
+			#{status},
+			#{remark},
+			#{createBy},
+			#{createTime},
+			#{updateBy},
+			#{updateTime}
+		)	
+
+	</insert>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from sys_menu 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="deleteByIds" parameterType="java.util.Collection">
+     	delete from sys_menu 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+  	 
+  	 <delete id="logicDelete" parameterType="java.lang.Integer">
+		update sys_menu set status1 = '-1' 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="logicDeleteByIds" parameterType="java.util.Collection">
+     	update sys_menu set status1 = '-1' 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+	
+	<update id="update" parameterType="com.zmyjn.sys.menu.entity.SysMenu" >
+			
+		update sys_menu 	
+		<set> 	
+			pid=#{pid},
+			name=#{name},
+			title=#{title},
+			jump=#{jump},
+			icon=#{icon},
+			spread=#{spread},
+			sort=#{sort},
+			status=#{status},
+			remark=#{remark},
+			create_by=#{createBy},
+			create_time=#{createTime},
+			update_by=#{updateBy},
+			update_time=#{updateTime}
+		</set> 	
+		where 
+		ID=#{id} 	
+
+	</update>
+	
+	<update id="updateWithIf" parameterType="com.zmyjn.sys.menu.entity.SysMenu" >
+			
+		update sys_menu 	
+		<set> 	
+			<if test=" pid!=null ">	
+				pid=#{pid},	
+			</if>	
+			<if test=" name!=null ">	
+				name=#{name},	
+			</if>	
+			<if test=" title!=null ">	
+				title=#{title},	
+			</if>	
+			<if test=" jump!=null ">	
+				jump=#{jump},	
+			</if>	
+			<if test=" icon!=null ">	
+				icon=#{icon},	
+			</if>	
+			<if test=" spread!=null ">	
+				spread=#{spread},	
+			</if>	
+			<if test=" sort!=null ">	
+				sort=#{sort},	
+			</if>	
+			<if test=" status!=null ">	
+				status=#{status},	
+			</if>	
+			<if test=" remark!=null ">	
+				remark=#{remark},	
+			</if>	
+			<if test=" createBy!=null ">	
+				create_by=#{createBy},	
+			</if>	
+			<if test=" createTime!=null ">	
+				create_time=#{createTime},	
+			</if>	
+			<if test=" updateBy!=null ">	
+				update_by=#{updateBy},	
+			</if>	
+			<if test=" updateTime!=null ">	
+				update_time=#{updateTime},	
+			</if>	
+		</set>	
+		where 	
+		ID=#{id} 	
+
+	</update>
+	
+	<!-- *************************************************************************** -->
+	<!-- **************以下映射根据业务做相应调整**************** -->
+	<!-- *************************************************************************** -->
+  	
+  	<delete id="deleteByMap" parameterType="java.util.Map">
+    	delete from sys_menu 	 
+    	<where>
+    		
+    	</where>
+  	</delete>
+	
+	<select id="findById" parameterType="java.lang.Integer" resultType="com.zmyjn.sys.menu.entity.SysMenu">
+				
+		select  	
+			a.id id,
+			a.pid pid,
+			a.name name,
+			a.title title,
+			a.jump jump,
+			a.icon icon,
+			a.spread spread,
+			a.sort sort,
+			a.status status,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_menu a	
+
+		where a.Id=#{id}	
+	</select>
+
+	<select id="findListByMap" parameterType="java.util.Map" resultType="com.zmyjn.sys.menu.entity.SysMenu">
+		
+				
+		select  	
+			a.id id,
+			a.pid pid,
+			a.name name,
+			a.title title,
+			a.jump jump,
+			a.icon icon,
+			a.spread spread,
+			a.sort sort,
+			a.status status,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_menu a	
+
+		
+		<where>
+			
+		</where>
+
+	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.zmyjn.sys.menu.entity.SysMenu">
+		
+		
+				
+		select  	
+			a.id id,
+			a.pid pid,
+			a.name name,
+			a.title title,
+			a.jump jump,
+			a.icon icon,
+			a.spread spread,
+			a.sort sort,
+			a.status status,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_menu a	
+
+		
+		<where>
+			<if test="searchKeys!= null ">
+				AND ( 1=2
+				<foreach collection="searchKeys" index="index" item="item" >
+					 OR a.id like #{item}
+				</foreach> 
+				)
+			</if>
+		</where>
+
+		
+	</select>
+	
+	<select id="findOneByMap" parameterType="java.util.Map" resultType="com.zmyjn.sys.menu.entity.SysMenu">
+				
+		select  	
+			a.id id,
+			a.pid pid,
+			a.name name,
+			a.title title,
+			a.jump jump,
+			a.icon icon,
+			a.spread spread,
+			a.sort sort,
+			a.status status,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_menu a	
+
+		<where>
+		
+		</where>
+		limit 1
+	</select>
+</mapper>
+	

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>轮播管理 - 轮播分组</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layui/css/layui.css" media="all">
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">轮播名称</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name" lay-verify="required" placeholder="轮播名称" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">轮播标题</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" lay-verify="required" placeholder="轮播标题" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">分组</label>
+      <div class="layui-input-inline">
+        <select name="groupId" lay-verify="required">
+          <option value="">请选择类型</option>
+          <option value="1">1</option>
+          <option value="2" selected="selected">2</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="layui-form-item">
+	    <label class="layui-form-label">轮播图片</label>
+	    <div class="layui-input-inline">
+	      <input name="src" id="LAY_carouselSrc" placeholder="轮播图片地址" value="" class="layui-input">
+	    </div>
+	    <div class="layui-input-inline layui-btn-container" style="width: auto;">
+	      <button type="button" class="layui-btn layui-btn-primary" id="LAY_carouselUpload">
+	        <i class="layui-icon">&#xe67c;</i>上传图片
+	      </button>
+	      <button class="layui-btn layui-btn-primary" layadmin-event="carouselPreview">查看图片</button >
+	    </div>
+	 </div>
+             
+     <div class="layui-form-item">
+      <label class="layui-form-label">排序</label>
+      <div class="layui-input-inline">
+        <input type="text" name="sort" placeholder="排序" lay-verify="number" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">发布状态</label>
+      <div class="layui-input-inline">
+        <input type="checkbox" lay-verify="required" lay-filter="status" name="status1" lay-skin="switch" lay-text="已发布|待发布" checked>
+      </div>
+      
+    </div>
+    <div class="layui-form-item layui-hide">
+      <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit" value="确认添加">
+      <input type="button" lay-submit lay-filter="layuiadmin-app-form-edit" id="layuiadmin-app-form-edit" value="确认编辑">
+    </div>
+  </div>
+
+  <script src="../../../layui/layui.js"></script> 
+  <script>
+  layui.config({
+    base: '../../../js/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form','admin','upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,admin =(layui.laytpl, layui.setter, layui.view, layui.admin)
+    ,upload = layui.upload;
+    
+    
+    var id = getQueryString("id");
+		
+		if(id!=null){
+			
+			admin.req({
+				url: "/sys/carouselinfo/init",
+				type: "get",
+				data: {id:id},
+				done: function(data) {
+						$("input[name='name']").val(data.data.name);
+						$("input[name='title']").val(data.data.title);
+						$("input[name='sort']").val(data.data.sort);
+						$("input[name='src']").val(data.data.src);
+				}
+			});	
+			
+		}else{
+			
+		}
+		
+		form.render();
+    
+    
+    //监听提交
+    form.on('submit(layuiadmin-app-form-submit)', function(data){
+    	if(data.field.status1== "on"){
+    		data.field.status1="1"
+    	}else{
+    		data.field.status1="0"
+    	}
+     
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引  
+		
+      //提交 Ajax 成功后，关闭当前弹层并重载表格
+      //$.ajax({});
+      if(id!=null){
+      	//修改
+      	data.field.id = id;
+ 				var field = data.field; //获取提交的字段
+      	console.log(field);
+      	admin.req({
+					url: "/sys/carouselinfo/updateSave",
+					type: "post",
+					data: field,
+					done: function(data) {
+						parent.layui.table.reload('LAY-app-product-list'); //重载表格
+				      	parent.layer.close(index); //再执行关闭 
+					}
+				});	
+      }else{
+      	//添加
+      	var field = data.field; //获取提交的字段
+      	admin.req({
+					url: "/sys/carouselinfo/addSave",
+					type: "post",
+					data: field,
+					done: function(data) {
+						parent.layui.table.reload('LAY-app-product-list'); //重载表格
+				      	parent.layer.close(index); //再执行关闭 
+					}
+				});	
+      }
+			
+      
+    });
+    
+    
+    var carouse = $("#LAY_carouselSrc");
+    upload.render({
+			url: "/file/fileManager/upload",
+			elem: "#LAY_carouselUpload",
+			done: function(t) {
+				carouse.val(t.url);
+			}
+		}), admin.events.carouselPreview = function(t) {
+				// 查看头像
+				var i = carouse.val();
+				layer.photos({
+					photos: {
+						title: "查看头像",
+						data: [{
+							src: i
+						}]
+					},
+					shade: .01,
+					closeBtn: 1,
+					anim: 5
+				})
+			}
+    
+    
+  });
+  
+  function getQueryString(name) {
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	    var r = window.location.search.substr(1).match(reg);
+	    if (r != null) return unescape(r[2]); return null;
+	}
+  </script>
+</body>
+</html>

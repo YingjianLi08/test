@@ -1,0 +1,102 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>主页一</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../css/style/admin.css" media="all">
+</head>
+<body>
+  
+  <div style="width: 100%; height: 100%; text-align: center; font-size: 28px;">TEST</div>
+
+	<div class="layui-form-item">
+                <label class="layui-form-label">项目代号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="codeName" value="001" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              
+              <div class="layui-form-item">
+                <label class="layui-form-label">项目编码</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="sysProjectCode" value="XMDH001" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+		<button class="layui-btn" lay-submit lay-filter="setmyinfo">提交尽调需求</button>
+		
+		
+		<hr />
+		
+		<div class="layui-form-item">
+	    <label class="layui-form-label">项目编号</label>
+	    <div class="layui-input-inline">
+	      <input type="text" name="projectCode" value="WD-XM-20181117" lay-verify="email" autocomplete="off" class="layui-input">
+	    </div>
+	  </div>
+		<button class="layui-btn" lay-submit lay-filter="setmyinfo2">查询履约计划（带项目编号）</button>
+		
+  <script src="../../layui/layui.js?t=1"></script>  
+  <script>
+  layui.config({
+    base: '../../js/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index','jquery','form'],function(){
+  		var $ = layui.jquery,
+  		form = layui.form;
+  		
+  		
+  		
+  		
+  		form.on("submit(setmyinfo)", function(t) {
+  			
+  			var codeName = $("input[name='codeName']").val();
+  			var sysProjectCode = $("input[name='sysProjectCode']").val();
+  		
+  			
+		layer.open({
+			  type: 2,
+			  title: '新增尽调需求',
+			  shadeClose: true,
+			  shade: 0.8,
+			  area: ['90%', '90%'],
+			  content: 'http://localhost:8080/investigationManage/demand/add.html?codeName='+codeName+'&sysProjectCode='+sysProjectCode //iframe的url
+//			  ,btn: ['确定', '取消'],
+//			  yes : function(iframeId) {
+//					top.frames[iframeId].vm.acceptClick();
+//				},
+			});
+  		})
+  		
+  		
+		form.on("submit(setmyinfo2)", function(t) {
+  			
+			var projectCode = $("input[name='projectCode']").val();
+  			
+			layer.open({
+			  type: 2,
+			  title: '履约计划',
+			  shadeClose: true,
+			  shade: 0.8,
+			  area: ['90%', '90%'],
+			  content: 'http://localhost:8080/executeAppointManage/payment/list2.html?projectCode='+projectCode
+			});
+		})
+  		
+  		
+  		
+  });
+  
+  
+
+  
+  </script>
+</body>
+</html>
+

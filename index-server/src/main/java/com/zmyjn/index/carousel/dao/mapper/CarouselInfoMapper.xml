@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmyjn.index.carousel.dao.mapper.CarouselInfoMapper">
+
+<!-- **************以下映射必须与数据库一致 不要更改，除非数据库改变**************** -->
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zmyjn.index.carousel.entity.CarouselInfo">
+				
+		insert into carousel_info
+		(
+			name,
+			title,
+			group_id,
+			src,
+			sort,
+			type,
+			status1,
+			remark,
+			create_by,
+			create_time,
+			update_by,
+			update_time
+		)
+		values	
+		(	
+			#{name},
+			#{title},
+			#{groupId},
+			#{src},
+			#{sort},
+			#{type},
+			#{status1},
+			#{remark},
+			#{createBy},
+			#{createTime},
+			#{updateBy},
+			#{updateTime}
+		)	
+
+	</insert>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from carousel_info 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="deleteByIds" parameterType="java.util.Collection">
+     	delete from carousel_info 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+  	 
+  	 <delete id="logicDelete" parameterType="java.lang.Integer">
+		update carousel_info set status1 = '-1' 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="logicDeleteByIds" parameterType="java.util.Collection">
+     	update carousel_info set status1 = '-1' 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+	
+	<update id="update" parameterType="com.zmyjn.index.carousel.entity.CarouselInfo" >
+			
+		update carousel_info 	
+		<set> 	
+			name=#{name},
+			title=#{title},
+			group_id=#{groupId},
+			src=#{src},
+			sort=#{sort},
+			type=#{type},
+			status1=#{status1},
+			remark=#{remark},
+			create_by=#{createBy},
+			create_time=#{createTime},
+			update_by=#{updateBy},
+			update_time=#{updateTime}
+		</set> 	
+		where 
+		ID=#{id} 	
+
+	</update>
+	
+	<update id="updateWithIf" parameterType="com.zmyjn.index.carousel.entity.CarouselInfo" >
+			
+		update carousel_info 	
+		<set> 	
+			<if test=" name!=null ">	
+				name=#{name},	
+			</if>	
+			<if test=" title!=null ">	
+				title=#{title},	
+			</if>	
+			<if test=" groupId!=null ">	
+				group_id=#{groupId},	
+			</if>	
+			<if test=" src!=null ">	
+				src=#{src},	
+			</if>	
+			<if test=" sort!=null ">	
+				sort=#{sort},	
+			</if>	
+			<if test=" type!=null ">	
+				type=#{type},	
+			</if>	
+			<if test=" status1!=null ">	
+				status1=#{status1},	
+			</if>	
+			<if test=" remark!=null ">	
+				remark=#{remark},	
+			</if>	
+			<if test=" createBy!=null ">	
+				create_by=#{createBy},	
+			</if>	
+			<if test=" createTime!=null ">	
+				create_time=#{createTime},	
+			</if>	
+			<if test=" updateBy!=null ">	
+				update_by=#{updateBy},	
+			</if>	
+			<if test=" updateTime!=null ">	
+				update_time=#{updateTime},	
+			</if>	
+		</set>	
+		where 	
+		ID=#{id} 	
+
+	</update>
+	
+	<!-- *************************************************************************** -->
+	<!-- **************以下映射根据业务做相应调整**************** -->
+	<!-- *************************************************************************** -->
+  	
+  	<delete id="deleteByMap" parameterType="java.util.Map">
+    	delete from carousel_info 	 
+    	<where>
+    		
+    	</where>
+  	</delete>
+	
+	<select id="findById" parameterType="java.lang.Integer" resultType="com.zmyjn.index.carousel.entity.CarouselInfo">
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.title title,
+			a.group_id groupId,
+			a.src src,
+			a.sort sort,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from carousel_info a	
+
+		where a.Id=#{id}	
+	</select>
+
+	<select id="findListByMap" parameterType="java.util.Map" resultType="com.zmyjn.index.carousel.entity.CarouselInfo">
+		
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.title title,
+			a.group_id groupId,
+			a.src src,
+			a.sort sort,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from carousel_info a	
+
+		
+		<where>
+			
+		</where>
+
+	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.zmyjn.index.carousel.entity.CarouselInfo">
+		
+		
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.title title,
+			a.group_id groupId,
+			a.src src,
+			a.sort sort,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from carousel_info a	
+
+		
+		<where>
+			a.status1 != '-1'
+			<if test="searchKeys!= null ">
+				AND ( 1=2
+				<foreach collection="searchKeys" index="index" item="item" >
+					 OR a.id like #{item}
+				</foreach> 
+				)
+			</if>
+		</where>
+
+		
+	</select>
+	
+	<select id="findOneByMap" parameterType="java.util.Map" resultType="com.zmyjn.index.carousel.entity.CarouselInfo">
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.title title,
+			a.group_id groupId,
+			a.src src,
+			a.sort sort,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from carousel_info a	
+
+		<where>
+		
+		</where>
+		limit 1
+	</select>
+</mapper>
+	

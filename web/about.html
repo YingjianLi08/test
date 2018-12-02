@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Adyss - 全天拍</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<script type="text/javascript" src="res/layui/layui.js"></script>
+		<script type="text/javascript" src="res/static/js/common.js"></script>
+		<link rel="stylesheet" type="text/css" href="res/layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="res/static/css/main.css">
+		<!--加载meta IE兼容文件-->
+		<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+	</head>
+
+	<body>
+
+		<!-- header -->
+		<div class="header_box">
+			<div class="header">
+				<ul class="app-header">
+					<li class="app-header-menuicon">
+						<i class="layui-icon layui-icon-more-vertical"></i>
+					</li>
+				</ul>
+				<h1 class="logo">
+        <a href="#"><img src="res/static/images/home/logo.png" /></a>
+      </h1>
+				<div class="nav" style="visibility: visible">
+					<a href="index.html">首页</a>
+					<a href="case.html">案例</a>
+					<a href="service.html">服务</a>
+					<a href="about.html" class="active">关于</a>
+					<a href="en/index.html">中文/English</a>
+				</div>
+				<ul class="layui-nav header-down-nav">
+					<li class="layui-nav-item">
+						<a href="index.html">首页</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="case.html">案例</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="service.html">服务</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="about.html" class="active">关于</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="en/index.html">中文/English</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- end-header -->
+
+		<!-- about-content -->
+		<div class="about-content content">
+			<div class="about-big-img">
+				<div class="text_box">
+					<div class="text">
+						<!--<h3>我们的信念</h3>
+          <p>身处在前端社区的繁荣之下，我们都在有意或无意地追逐。而 layui偏偏回望当初，奔赴在返璞归真的漫漫征途，自信并勇敢着，追寻于 原生态的书写指令，试图以最简单的方式诠释高效。-->
+					</div>
+				</div>
+			</div>
+			<div class="about-info">
+				<div class="img-texts">
+					<div class="item">
+						<div class="layui-fluid">
+							<div class="layui-row">
+								<div class="layui-col-xs12 layui-col-sm12 layui-col-md6 img-center">
+									<img src="res/static/images/gy_img1.jpg">
+								</div>
+								<div class="layui-col-xs12 layui-col-sm12 layui-col-md6">
+									<div class="text">
+										<h5>About us</h5>
+										<h4>关于我们</h4>
+										<p>
+											深圳市全天拍科技有限公司是专业的自拍杆制造商之一，至力于研究，发展，生产和开发智能自拍杆。我们在自拍杆领域有经验丰富的工程师，致力于改善技术和制造创新。我们的产品已经通过了CE, RoHS, MSDS和 FCC等认证。目前,我们正在加强综合实力的设计、生产、销售和质量控制以满足市场竞争的挑战,我们的不断创新和优质服务使我们领先于自拍杆领域。 我们秉承的原则是“不断自我创新,满足客户要求”,我们取得了相当大的努力来改善产品。为了取得进展,进一步发展公司,我们积极促进与国内外合作伙伴的合作。
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--<div class="layui-carousel imgbox"  id="test1">
+        <div carousel-item  class="imgH">
+        	<div><img src="res/static/images/about/about-img03.jpg"/></div>
+        	<div><img src="res/static/images/about/about-img04.jpg"/></div>
+        </div>
+      </div>-->
+
+				<div class="layui-carousel imgbox" id="test1">
+					<div carousel-item class="imgH">
+						<div><img style="width: 100%" src="res/static/images/about/about-img03.jpg"></div>
+						<div><img style="width: 100%" src="res/static/images/about/about-img04.jpg"></div>
+					</div>
+				</div>
+
+				<div class="coreTeam_box">
+					<div class="writebg"></div>
+					<div class="coreTeam">
+						<div>
+
+							<h3>荣誉资质</h3>
+							<!--<h4>有了向心力，才有可能凝聚</h4>-->
+							<div class="layui-row layui-col-space15" id="honor_list"></div>
+							<div id="demo20"></div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="Partner">
+				<div class="title">
+					<h3>合作伙伴</h3>
+					<h4>cooperative partner</h4>
+				</div>
+				<div class="cont-box">
+					<div class="layui-fluid">
+						<div class="row layui-col-space20">
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/youku.jpg" alt="优酷" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/zhongguoyinhang.jpg" alt="中国银行" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/zhongguopingan.jpg" alt="中国平安" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/icon.jpg" alt="ICON" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/chigo.jpg" alt="CHIGO" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/take.jpg" alt="TAKE" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/apus.jpg" alt="APUS" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/weibo.jpg" alt="微博" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/traveling.jpg" alt="带你去旅行" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/pufayinhang.jpg" alt="浦发银行" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/jijia.jpg" alt="吉佳地产" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+							<div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
+								<h2><img src="res/static/images/partner/melkco.jpg" alt="melkco" style="width: 178.33px; height: 74.44;"></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- about-content -->
+
+		<!-- footer -->
+  <div class="footer">
+    <div class="line">
+    	<div class="layui-row">
+		    <div class="layui-col-xs3">
+		      <div class="grid-demo grid-demo-bg1">
+		      	<dl>
+			    		<dt>地址</dt>
+			    		<dd>深圳市光明新区公明街道合水口社区中鹏程工业园主楼七楼</dd>
+			    	</dl>
+		      </div>
+		    </div>
+		    <div class="layui-col-xs3">
+		      <div class="grid-demo">
+		      	<dl>
+			    		<dt>邮箱</dt>
+			    		<dd>adyss@foxmail.com</dd>
+			    	</dl>
+		      </div>
+		    </div>
+		    <div class="layui-col-xs3">
+		      <div class="grid-demo grid-demo-bg1">
+		      	<dl>
+			    		<dt>电话</dt>
+			    		<dd>0755-23942823</dd>
+			    	</dl>
+		      </div>
+		    </div>
+		    <div class="layui-col-xs3">
+		      <div class="grid-demo">
+		      	<dl>
+			    		<dt>工作时间</dt>
+			    		<dd>工作时间：9:00~18:00</dd>
+			    	</dl>
+		      </div>
+		    </div>
+		  </div>
+    	
+    </div>
+    <p class="copyright">
+      @2018 深圳市全天拍科技有限公司<br />
+      <a href="http://www.miibeian.gov.cn" target="_blank" style="color: ;">粤ICP备17050587号</a>
+      <a href="http://www.szhulian.com/Application/Html/copyright/mzsm.html" target="_blank">免责声明</a><br />
+    </p>
+    <div class="icon_box">
+      <a href="javascript:;" onclick="wxClick();"><i class="layui-icon layui-icon-login-wechat weixin-icon"></i></a>
+      <a href="javascript:;" onclick="weiboClick()"><i class="layui-icon layui-icon-login-weibo weibo-icon"></i></a>
+    </div>
+  </div>
+  <!-- end-footer -->
+
+		<script>
+			layui.use(['carousel', 'jquery', 'laypage', 'form'], function() {
+				var carousel = layui.carousel,
+					$ = layui.$,
+					laypage = layui.laypage,
+					form = layui.form;
+				//建造实例
+				carousel.render({
+					elem: '#test1',
+					width: '100%' //设置容器宽度
+						,
+					arrow: 'always',
+					height: 'auto'
+					//,anim: 'updown' //切换动画方式
+				});
+
+				carousel.render({
+					elem: '#test2',
+					width: '100%' //设置容器宽度
+						,
+					arrow: 'always',
+					height: 'auto'
+					//,anim: 'updown' //切换动画方式
+				});
+				$('.app-header-menuicon').on('click', function() {
+					$('.header-down-nav').toggleClass('down-nav')
+				});
+
+				var imgH = $('.imgbox div.layui-this').outerHeight();
+				$('.imgH').css('height', imgH + 'px')
+				window.onresize = function() {
+					var imgH = $('.imgbox div.layui-this').outerHeight();
+					$('.imgH').css('height', imgH + 'px')
+				};
+
+				//荣誉资质图片数据
+				var data = [{
+						"src": "res/static/images/about/honor-img01.jpg",
+						"alt": "SRRC认证1",
+						"pid": 1
+					},
+					{
+						"src": "res/static/images/about/honor-img02.jpg",
+						"alt": "ROHS认证"
+					},
+					{
+						"src": "res/static/images/about/honor-img03.jpg",
+						"alt": "MSDS认证"
+					},
+					{
+						"src": "res/static/images/about/honor-img04.jpg",
+						"alt": "FCC认证"
+					},
+					{
+						"src": "res/static/images/about/honor-img05.jpg",
+						"alt": "CE认证"
+					},
+					{
+						"src": "res/static/images/about/honor-img06.jpg",
+						"alt": "营业执照2"
+					},
+					{
+						"src": "res/static/images/about/honor-img07.jpg",
+						"alt": "营业执照1"
+					},
+					{
+						"src": "res/static/images/about/honor-img08.jpg",
+						"alt": "外观专利2"
+					},
+					{
+						"src": "res/static/images/about/honor-img09.jpg",
+						"alt": "外观专利1"
+					},
+					{
+						"src": "res/static/images/about/honor-img10.jpg",
+						"alt": "外观专利"
+					},
+					{
+						"src": "res/static/images/about/honor-img11.jpg",
+						"alt": "实用专利2"
+					},
+					{
+						"src": "res/static/images/about/honor-img12.jpg",
+						"alt": "实用专利1"
+					},
+					{
+						"src": "res/static/images/about/honor-img13.jpg",
+						"alt": "实用专利"
+					},
+					{
+						"src": "res/static/images/about/honor-img14.jpg",
+						"alt": "SRRC认证2"
+					},
+					{
+						"src": "res/static/images/about/honor-img15.jpg",
+						"alt": "航空运输报告"
+					},
+					{
+						"src": "res/static/images/about/honor-img16.jpg",
+						"alt": "质检报告"
+					},
+					{
+						"src": "res/static/images/about/honor-img17.jpg",
+						"alt": "全天拍商标美国商标-(1)"
+					},
+					{
+						"src": "res/static/images/about/honor-img18.jpg",
+						"alt": "全天拍商标美国商标-(2)"
+					},
+					//	  	{"src":"res/static/images/about/honor-img19.jpg","alt":"商标1"},
+					//	  	{"src":"res/static/images/about/honor-img20.jpg","alt":"商标2"},
+
+				]
+
+				var limit = 6;
+				//调用分页
+				laypage.render({
+					elem: 'demo20',
+					count: data.length,
+					limit: limit,
+					jump: function(obj) {
+						//模拟渲染
+						document.getElementById('honor_list').innerHTML = function() {
+							var arr = [],
+								thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
+							layui.each(thisData, function(index, item) {
+								arr.push('<div class="layui-col-xs12 layui-col-sm4 layui-col-md4">');
+								arr.push('<div class="imgTxt">');
+								arr.push('<a href="javascript:;" class="honorPreview"  >');
+								arr.push('<img src="' + item.src + '" alt="" style="width:278px;height:389px;">');
+								arr.push('</a>');
+								arr.push('<h6>' + item.alt + '</h6>');
+								arr.push('</div>');
+								arr.push(' </div>');
+							});
+							return arr.join('');
+						}();
+					}
+				});
+
+				$(document).on('click', '.honorPreview', function(e) {
+
+					var start = $(".honorPreview").index(this);
+
+					// 获取当前页
+					var cuur = $(".layui-laypage-curr").children().eq(1).text();
+
+					if(cuur > 1) {
+						start = (cuur - 1) * limit + start;
+					}
+
+					// 		var imgData = {
+					// 				"title": "", //相册标题
+					// 				"id": 123, //相册id
+					// 				"start": 0, //初始显示的图片序号，默认0
+					// 				"data": [   //相册包含的图片，数组格式
+					//			    {
+					//			      "alt": "图片名",
+					//			      "pid": 666, //图片id
+					//			      "src": "res/static/images/about/honor-img01.jpg", //原图地址
+					//			      "thumb": "" //缩略图地址
+					//			    }
+					//			  ]
+					// 			}; 
+
+					var imgData = {
+						"title": "荣誉资质", //相册标题
+						"id": 123, //相册id
+						"start": start, //初始显示的图片序号，默认0
+						"data": data
+					};
+					layer.photos({
+						photos: imgData,
+						shift: 0 //0-6的选择，指定弹出图片动画类型，默认随机
+					});
+				});
+
+			});
+
+			//function honorPreview(){
+			//	
+			//	layer.msg("1");
+			////	layer.photos({
+			////      photos: { "data": [{"src": "res/static/images/about/honor-img01.jpg"}] }
+			////  });
+			//}
+		</script>
+	</body>
+
+</html>
