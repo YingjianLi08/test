@@ -1,3 +1,37 @@
+layui.define(["form", "upload","jquery"], function(t) {
+
+    var $ = layui.jquery;
+
+    $.ajax({
+        url:"/index/syssite/findById",
+        type:"get",
+        async:true,
+        data: {id:1},
+        success : function(data) {
+
+            $(document).attr("title",data.data.title);//修改title值
+            // $(document).attr("keywords",data.data.keywords);//修改keywords值
+            // $(document).attr("description",data.data.description);//修改description值
+
+            var metas = document.getElementsByTagName("meta");
+            metas[0].name ="keywords";
+            metas[0].content=data.data.keywords;
+            metas[1].name ="description";
+            metas[1].content=data.data.description;
+
+            $("#logo").attr("src",data.data.logo);
+
+            $("#copyright").text(data.data.copyright);
+            $("#beian").text(data.data.beian);
+        }
+    });
+
+
+
+
+});
+
+
 /**
  * 点击微信弹出
  */
@@ -30,5 +64,5 @@ function wxClick(){
 		});
 	
 	})
-	
 }
+
