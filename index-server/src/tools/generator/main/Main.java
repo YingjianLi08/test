@@ -17,16 +17,16 @@ public class Main {
 
 		GeneratorConfig config = new GeneratorConfig();
 		//数据表名
-		config.tableName="carousel_info";
+		config.tableName="sys_site";
 
 		//类描述
-		config.description="轮播信息";
+		config.description="网站信息";
 
 		//包路径
-		config.packageUrl="com.zmyjn.index.carousel";
+		config.packageUrl="com.zmyjn.index.site";
 
 		//类名称
-		config.className="CarouselInfo";
+		config.className="SysSite";
 
 
 

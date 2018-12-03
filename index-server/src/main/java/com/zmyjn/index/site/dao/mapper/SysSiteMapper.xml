@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmyjn.index.site.dao.mapper.SysSiteMapper">
+
+<!-- **************以下映射必须与数据库一致 不要更改，除非数据库改变**************** -->
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zmyjn.index.site.entity.SysSite">
+				
+		insert into sys_site
+		(
+			site_name,
+			domain,
+			title,
+			keywords,
+			description,
+			logo,
+			phone,
+			email,
+			copyright,
+			beian,
+			type,
+			status1,
+			remark,
+			create_by,
+			create_time,
+			update_by,
+			update_time
+		)
+		values	
+		(	
+			#{siteName},
+			#{domain},
+			#{title},
+			#{keywords},
+			#{description},
+			#{logo},
+			#{phone},
+			#{email},
+			#{copyright},
+			#{beian},
+			#{type},
+			#{status1},
+			#{remark},
+			#{createBy},
+			#{createTime},
+			#{updateBy},
+			#{updateTime}
+		)	
+
+	</insert>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from sys_site 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="deleteByIds" parameterType="java.util.Collection">
+     	delete from sys_site 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+  	 
+  	 <delete id="logicDelete" parameterType="java.lang.Integer">
+		update sys_site set status1 = '-1' 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="logicDeleteByIds" parameterType="java.util.Collection">
+     	update sys_site set status1 = '-1' 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+	
+	<update id="update" parameterType="com.zmyjn.index.site.entity.SysSite" >
+			
+		update sys_site 	
+		<set> 	
+			site_name=#{siteName},
+			domain=#{domain},
+			title=#{title},
+			keywords=#{keywords},
+			description=#{description},
+			logo=#{logo},
+			phone=#{phone},
+			email=#{email},
+			copyright=#{copyright},
+			beian=#{beian},
+			type=#{type},
+			status1=#{status1},
+			remark=#{remark},
+			create_by=#{createBy},
+			create_time=#{createTime},
+			update_by=#{updateBy},
+			update_time=#{updateTime}
+		</set> 	
+		where 
+		ID=#{id} 	
+
+	</update>
+	
+	<update id="updateWithIf" parameterType="com.zmyjn.index.site.entity.SysSite" >
+			
+		update sys_site 	
+		<set> 	
+			<if test=" siteName!=null ">	
+				site_name=#{siteName},	
+			</if>	
+			<if test=" domain!=null ">	
+				domain=#{domain},	
+			</if>	
+			<if test=" title!=null ">	
+				title=#{title},	
+			</if>	
+			<if test=" keywords!=null ">	
+				keywords=#{keywords},	
+			</if>	
+			<if test=" description!=null ">	
+				description=#{description},	
+			</if>	
+			<if test=" logo!=null ">	
+				logo=#{logo},	
+			</if>	
+			<if test=" phone!=null ">	
+				phone=#{phone},	
+			</if>	
+			<if test=" email!=null ">	
+				email=#{email},	
+			</if>	
+			<if test=" copyright!=null ">	
+				copyright=#{copyright},	
+			</if>	
+			<if test=" beian!=null ">	
+				beian=#{beian},	
+			</if>	
+			<if test=" type!=null ">	
+				type=#{type},	
+			</if>	
+			<if test=" status1!=null ">	
+				status1=#{status1},	
+			</if>	
+			<if test=" remark!=null ">	
+				remark=#{remark},	
+			</if>	
+			<if test=" createBy!=null ">	
+				create_by=#{createBy},	
+			</if>	
+			<if test=" createTime!=null ">	
+				create_time=#{createTime},	
+			</if>	
+			<if test=" updateBy!=null ">	
+				update_by=#{updateBy},	
+			</if>	
+			<if test=" updateTime!=null ">	
+				update_time=#{updateTime},	
+			</if>	
+		</set>	
+		where 	
+		ID=#{id} 	
+
+	</update>
+	
+	<!-- *************************************************************************** -->
+	<!-- **************以下映射根据业务做相应调整**************** -->
+	<!-- *************************************************************************** -->
+  	
+  	<delete id="deleteByMap" parameterType="java.util.Map">
+    	delete from sys_site 	 
+    	<where>
+    		
+    	</where>
+  	</delete>
+	
+	<select id="findById" parameterType="java.lang.Integer" resultType="com.zmyjn.index.site.entity.SysSite">
+				
+		select  	
+			a.id id,
+			a.site_name siteName,
+			a.domain domain,
+			a.title title,
+			a.keywords keywords,
+			a.description description,
+			a.logo logo,
+			a.phone phone,
+			a.email email,
+			a.copyright copyright,
+			a.beian beian,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_site a	
+
+		where a.Id=#{id}	
+	</select>
+
+	<select id="findListByMap" parameterType="java.util.Map" resultType="com.zmyjn.index.site.entity.SysSite">
+		
+				
+		select  	
+			a.id id,
+			a.site_name siteName,
+			a.domain domain,
+			a.title title,
+			a.keywords keywords,
+			a.description description,
+			a.logo logo,
+			a.phone phone,
+			a.email email,
+			a.copyright copyright,
+			a.beian beian,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_site a	
+
+		
+		<where>
+			
+		</where>
+
+	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.zmyjn.index.site.entity.SysSite">
+		
+		
+				
+		select  	
+			a.id id,
+			a.site_name siteName,
+			a.domain domain,
+			a.title title,
+			a.keywords keywords,
+			a.description description,
+			a.logo logo,
+			a.phone phone,
+			a.email email,
+			a.copyright copyright,
+			a.beian beian,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_site a	
+
+		
+		<where>
+			a.status1 != '-1'
+			<if test="searchKeys!= null ">
+				AND ( 1=2
+				<foreach collection="searchKeys" index="index" item="item" >
+					 OR a.id like #{item}
+				</foreach> 
+				)
+			</if>
+		</where>
+
+		
+	</select>
+	
+	<select id="findOneByMap" parameterType="java.util.Map" resultType="com.zmyjn.index.site.entity.SysSite">
+				
+		select  	
+			a.id id,
+			a.site_name siteName,
+			a.domain domain,
+			a.title title,
+			a.keywords keywords,
+			a.description description,
+			a.logo logo,
+			a.phone phone,
+			a.email email,
+			a.copyright copyright,
+			a.beian beian,
+			a.type type,
+			a.status1 status1,
+			a.remark remark,
+			a.create_by createBy,
+			a.create_time createTime,
+			a.update_by updateBy,
+			a.update_time updateTime
+		from sys_site a	
+
+		<where>
+		
+		</where>
+		limit 1
+	</select>
+</mapper>
+	
