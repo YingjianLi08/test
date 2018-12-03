@@ -39,6 +39,11 @@
               <input type="text" name="projectCode" value="WD-XM-20181117" lay-verify="email" autocomplete="off" class="layui-input">
             </div>
           </div>
+	    <label class="layui-form-label">项目编号</label>
+	    <div class="layui-input-inline">
+	      <input type="text" name="projectCode" value="WD-XM-20181117" lay-verify="email" autocomplete="off" class="layui-input">
+	    </div>
+	  </div>
 		<button class="layui-btn" lay-submit lay-filter="setmyinfo2">查询履约计划（带项目编号）</button>
 
 
@@ -53,7 +58,8 @@
   <button class="layui-btn" lay-submit lay-filter="setmyinfo3">新增协议起草（带项目编号）</button>
 
 
-  <script src="../../layui/layui.js?t=1"></script>  
+
+  <script src="../../layui/layui.js?t=1"></script>
   <script>
   layui.config({
     base: '../../js/' //静态资源所在路径
@@ -62,7 +68,14 @@
   }).use(['index','jquery','form'],function(){
   		var $ = layui.jquery,
   		form = layui.form;
+<<<<<<< HEAD
 
+=======
+  		
+  		
+  		
+  		
+>>>>>>> origin/master
   		form.on("submit(setmyinfo)", function(t) {
   			
   			var codeName = $("input[name='codeName']").val();
@@ -97,6 +110,7 @@
 			  content: 'http://localhost:8080/executeAppointManage/payment/list2.html?projectCode='+projectCode
 			});
 		})
+<<<<<<< HEAD
 
 
       form.on("submit(setmyinfo2)", function(t) {
@@ -112,6 +126,10 @@
               content: 'http://localhost:8080/agreementManage/draftAgreement/add.html?projectCode='+projectCode
           });
       })
+=======
+  		
+  		
+>>>>>>> origin/master
   		
   });
   
