@@ -268,11 +268,8 @@
     
     $(function(){
 			$.ajax({
-<<<<<<< HEAD
 				url:"/index/carouselinfo/list",
-=======
-				url:"/sys/carouselinfo/list",
->>>>>>> origin/master
+				// url:"/sys/carouselinfo/list",
 				type:"get",
 				async:true,
 				data: {},
@@ -284,7 +281,6 @@
 					});
 					
 					//建造实例
-<<<<<<< HEAD
                   carousel.render({
                     elem: '#test1'
                     ,width: '100%' //设置容器宽度
@@ -304,52 +300,22 @@
 				}
 			});
 		});
-
-=======
-			    carousel.render({
-			      elem: '#test1'
-			      ,width: '100%' //设置容器宽度
-			      ,arrow: 'always'
-			      ,height:'auto'
-			      //,anim: 'updown' //切换动画方式
-			    });
-			    $('.app-header-menuicon').on('click',function(){
-			      $('.header-down-nav').toggleClass('down-nav')
-			    })
-			    var imgH = $('.imgbox div.layui-this').outerHeight();
-			    $('.imgH').css('height',imgH+'px')
-			    window.onresize = function () {
-			      var imgH = $('.imgbox div.layui-this').outerHeight();
-			      $('.imgH').css('height',imgH+'px')
-			    };
-					
-//						$("input[name='name']").val(data.data.name);
-//						$("input[name='title']").val(data.data.title);
-//						$("input[name='sort']").val(data.data.sort);
-//						$("input[name='src']").val(data.data.src);
-
-//<div carousel-item  class="imgH">
-//        <div><img style="width: 100%" src="res/static/images/index/index-img01.jpg"></div>
-//        <div><img style="width: 100%" src="res/static/images/index/index-img02.jpg"></div>
-//        <div><img style="width: 100%" src="res/static/images/index/index-img03.jpg"></div>
-//        <div><img style="width: 100%" src="res/static/images/index/index-img04.jpg"></div>
-//      </div>
-
-				}
-			});
-		})
-    
-    
-    
-    
-
-
-		
-
-			
-			
-			
->>>>>>> origin/master
+              carousel.render({
+                elem: '#test1'
+                ,width: '100%' //设置容器宽度
+                ,arrow: 'always'
+                ,height:'auto'
+                //,anim: 'updown' //切换动画方式
+              });
+              $('.app-header-menuicon').on('click',function(){
+                $('.header-down-nav').toggleClass('down-nav')
+              })
+              var imgH = $('.imgbox div.layui-this').outerHeight();
+              $('.imgH').css('height',imgH+'px')
+              window.onresize = function () {
+                var imgH = $('.imgbox div.layui-this').outerHeight();
+                $('.imgH').css('height',imgH+'px')
+              };
   });
   </script>
 </body>
