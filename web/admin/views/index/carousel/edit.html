@@ -155,7 +155,7 @@
 			}
 		}), admin.events.carouselPreview = function(t) {
 				// 查看图片
-				var i = carouse.val();
+				var i = filePreview + carouse.val();
 				layer.photos({
 					photos: {
 						title: "查看图片",
@@ -172,11 +172,7 @@
     
   });
   
-  function getQueryString(name) {
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-	    var r = window.location.search.substr(1).match(reg);
-	    if (r != null) return unescape(r[2]); return null;
-	}
+  
   </script>
 </body>
 </html>

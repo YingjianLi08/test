@@ -218,6 +218,10 @@
 				</foreach> 
 				)
 			</if>
+			<if test="groupId!=null">
+				AND group_id = #{groupId}
+			</if>
+			order by a.sort asc
 		</where>
 
 		

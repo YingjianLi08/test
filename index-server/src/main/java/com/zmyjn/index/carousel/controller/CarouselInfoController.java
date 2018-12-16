@@ -40,11 +40,12 @@ public class CarouselInfoController{
 	@GetMapping(value="/list")
 	@ApiOperation(value = "轮播信息列表")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "searchKeys",value = "关键词",dataType = "string", paramType = "query",required = false)
+			@ApiImplicitParam(name = "searchKeys",value = "关键词",dataType = "string", paramType = "query",required = false),
+			@ApiImplicitParam(name = "groupId",value = "分组ID",dataType = "int", paramType = "query",required = false),
 	})
-	public ResultData list(@ModelAttribute Page<CarouselInfo> page,String searchKeys){
+	public ResultData list(@ModelAttribute Page<CarouselInfo> page,String searchKeys,Integer groupId){
 		ResultData result=new ResultData();
-		carouselInfoService.list(result,page,searchKeys);
+		carouselInfoService.list(result,page,searchKeys,groupId);
 
 		return result;
 	}

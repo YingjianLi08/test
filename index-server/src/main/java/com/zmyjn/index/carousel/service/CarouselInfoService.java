@@ -18,7 +18,7 @@ public interface CarouselInfoService extends BaseService<CarouselInfo, Integer> 
 	 * @param page
 	 * @return
 	 */
-	void list(ResultData result, Page<CarouselInfo> page,String searchKeys);
+	void list(ResultData result, Page<CarouselInfo> page,String searchKeys,Integer groupId);
 	
 	/**
 	 * 新增/修改初始化

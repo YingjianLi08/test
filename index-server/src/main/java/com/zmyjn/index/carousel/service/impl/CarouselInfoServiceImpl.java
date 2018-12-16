@@ -49,10 +49,11 @@ public class CarouselInfoServiceImpl extends BaseServiceImpl<CarouselInfo, Integ
 	 * @param page
 	 * @param searchKeys
 	 */
-	public void list(ResultData result,Page<CarouselInfo> page,String searchKeys){
+	public void list(ResultData result,Page<CarouselInfo> page,String searchKeys,Integer groupId){
 		Map<String, Object> mapSql=new HashMap<String, Object>();
 		mapSql.put("searchKeys", StringUtils.searchKeys(searchKeys));
-		
+		mapSql.put("groupId", groupId);
+
 		PageHelper.startPage((int)page.getPage(), (int)page.getLimit());
 		List<CarouselInfo> list = carouselInfoMapper.list(mapSql);
 		
