@@ -5,7 +5,7 @@
   <title>Adyss - 全天拍</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  <link rel="icon" type="image/jpg" href="res/static/images/home/logo.jpg" />
+  <link rel="icon" type="image/jpg" href="file_upload/image/home/icon.jpg" />
   <script type="text/javascript" src="res/layui/layui.js"></script>
   <script type="text/javascript" src="res/static/js/common.js"></script>
   <link rel="stylesheet" class="cssHref" type="text/css" href="res/layui/css/layui.css">
@@ -262,61 +262,9 @@
     </div>
   </div>
   <!-- end-footer -->
+  <script src="res/static/js/index/index.js"></script>
   <script>
-  layui.use(['carousel','jquery','element'],function(){
-    var carousel = layui.carousel,$ = layui.$;
-    
-    $(function(){
-			$.ajax({
-				url:"/index/carouselinfo/list",
-				// url:"/sys/carouselinfo/list",
-				type:"get",
-				async:true,
-				data: {},
-				success : function(data) {
-					
-					var array = data.data;
-					$.each(array, function(i,v) {
-						$(".imgH:parent").append('<div><img style="width: 100%" src="'+v.src+'"></div>');
-					});
-					
-					//建造实例
-                  carousel.render({
-                    elem: '#test1'
-                    ,width: '100%' //设置容器宽度
-                    ,arrow: 'always'
-                    ,height:'auto'
-                    //,anim: 'updown' //切换动画方式
-                  });
-                  $('.app-header-menuicon').on('click',function(){
-                    $('.header-down-nav').toggleClass('down-nav')
-                  })
-                  var imgH = $('.imgbox div.layui-this').outerHeight();
-                  $('.imgH').css('height',imgH+'px')
-                  window.onresize = function () {
-                    var imgH = $('.imgbox div.layui-this').outerHeight();
-                    $('.imgH').css('height',imgH+'px')
-                  };
-				}
-			});
-		});
-              carousel.render({
-                elem: '#test1'
-                ,width: '100%' //设置容器宽度
-                ,arrow: 'always'
-                ,height:'auto'
-                //,anim: 'updown' //切换动画方式
-              });
-              $('.app-header-menuicon').on('click',function(){
-                $('.header-down-nav').toggleClass('down-nav')
-              })
-              var imgH = $('.imgbox div.layui-this').outerHeight();
-              $('.imgH').css('height',imgH+'px')
-              window.onresize = function () {
-                var imgH = $('.imgbox div.layui-this').outerHeight();
-                $('.imgH').css('height',imgH+'px')
-              };
-  });
+  
   </script>
 </body>
 </html>
