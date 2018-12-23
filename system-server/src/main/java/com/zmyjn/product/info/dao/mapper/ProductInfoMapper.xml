@@ -11,12 +11,18 @@
 		(
 			code,
 			name,
+			keywords,
+			model,
 			price,
+			parame,
+			description,
+			is_hot,
 			image,
 			unit,
 			bar_code,
 			stock_count,
 			type_id,
+			sort,
 			status1,
 			remark,
 			create_by,
@@ -28,12 +34,18 @@
 		(	
 			#{code},
 			#{name},
+			#{keywords},
+			#{model},
 			#{price},
+			#{parame},
+			#{description},
+			#{isHot},
 			#{image},
 			#{unit},
 			#{barCode},
 			#{stockCount},
 			#{typeId},
+			#{sort},
 			#{status1},
 			#{remark},
 			#{createBy},
@@ -72,12 +84,18 @@
 		<set> 	
 			code=#{code},
 			name=#{name},
+			keywords=#{keywords},
+			model=#{model},
 			price=#{price},
+			parame=#{parame},
+			description=#{description},
+			is_hot=#{isHot},
 			image=#{image},
 			unit=#{unit},
 			bar_code=#{barCode},
 			stock_count=#{stockCount},
 			type_id=#{typeId},
+			sort=#{sort},
 			status1=#{status1},
 			remark=#{remark},
 			create_by=#{createBy},
@@ -100,8 +118,23 @@
 			<if test=" name!=null ">	
 				name=#{name},	
 			</if>	
+			<if test=" keywords!=null ">	
+				keywords=#{keywords},	
+			</if>	
+			<if test=" model!=null ">	
+				model=#{model},	
+			</if>	
 			<if test=" price!=null ">	
 				price=#{price},	
+			</if>	
+			<if test=" parame!=null ">	
+				parame=#{parame},	
+			</if>	
+			<if test=" description!=null ">	
+				description=#{description},	
+			</if>	
+			<if test=" isHot!=null ">	
+				is_hot=#{isHot},	
 			</if>	
 			<if test=" image!=null ">	
 				image=#{image},	
@@ -117,6 +150,9 @@
 			</if>	
 			<if test=" typeId!=null ">	
 				type_id=#{typeId},	
+			</if>	
+			<if test=" sort!=null ">	
+				sort=#{sort},	
 			</if>	
 			<if test=" status1!=null ">	
 				status1=#{status1},	
@@ -159,12 +195,18 @@
 			a.id id,
 			a.code code,
 			a.name name,
+			a.keywords keywords,
+			a.model model,
 			a.price price,
+			a.parame parame,
+			a.description description,
+			a.is_hot isHot,
 			a.image image,
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
 			a.type_id typeId,
+			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
 			a.create_by createBy,
@@ -183,12 +225,18 @@
 			a.id id,
 			a.code code,
 			a.name name,
+			a.keywords keywords,
+			a.model model,
 			a.price price,
+			a.parame parame,
+			a.description description,
+			a.is_hot isHot,
 			a.image image,
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
 			a.type_id typeId,
+			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
 			a.create_by createBy,
@@ -212,12 +260,18 @@
 			a.id id,
 			a.code code,
 			a.name name,
+			a.keywords keywords,
+			a.model model,
 			a.price price,
+			a.parame parame,
+			a.description description,
+			a.is_hot isHot,
 			a.image image,
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
 			a.type_id typeId,
+			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
 			a.create_by createBy,
@@ -228,6 +282,7 @@
 
 		
 		<where>
+			a.status1 != '-1'
 			<if test="searchKeys!= null ">
 				AND ( 1=2
 				<foreach collection="searchKeys" index="index" item="item" >
@@ -246,12 +301,18 @@
 			a.id id,
 			a.code code,
 			a.name name,
+			a.keywords keywords,
+			a.model model,
 			a.price price,
+			a.parame parame,
+			a.description description,
+			a.is_hot isHot,
 			a.image image,
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
 			a.type_id typeId,
+			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
 			a.create_by createBy,

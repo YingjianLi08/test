@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +22,13 @@ import com.zmyjn.product.info.entity.ProductInfo;
 
 
 /**
- * @Description: 商品信息
- * @author: Administrator
- * @date: 2018-11-18 12:38:46
+ * @Description: 商品轮播信息
+ * @author: LIYINGJIAN
+ * @date: 2018-12-23 10:25:04
  */
 @RestController
-@Api(value = "商品信息",tags = "商品信息接口")
-@RequestMapping("sys/productinfo")
+@Api(value = "商品轮播信息",tags = "商品轮播信息接口")
+@RequestMapping("/productinfo")
 public class ProductInfoController{
 	
 	private final  LogUtil logger = LogUtil.getLogger(this.getClass());
@@ -37,11 +38,11 @@ public class ProductInfoController{
 	
 
 	@GetMapping(value="/list")
-	@ApiOperation(value = "商品信息列表")
+	@ApiOperation(value = "商品轮播信息列表")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "searchKeys",value = "关键词",dataType = "string", paramType = "query",required = false)
 	})
-	public ResultData list(Page<ProductInfo> page,String searchKeys){
+	public ResultData list(@ModelAttribute Page<ProductInfo> page,String searchKeys){
 		ResultData result=new ResultData();
 		productInfoService.list(result,page,searchKeys);
 
@@ -50,7 +51,7 @@ public class ProductInfoController{
 
 
 	@GetMapping(value="/init")
-	@ApiOperation(value = "商品信息新增/修改初始化")
+	@ApiOperation(value = "商品轮播信息新增/修改初始化")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id",value = "主键id",dataType = "Integer", paramType = "query",required = true)
 	})
@@ -62,8 +63,8 @@ public class ProductInfoController{
 	
 
 	@PostMapping(value="/addSave")
-	@ApiOperation(value = "商品信息添加保存")
-	public ResultData addSave(ProductInfo entity){
+	@ApiOperation(value = "商品轮播信息添加保存")
+	public ResultData addSave(@ModelAttribute ProductInfo entity){
 		ResultData result=new ResultData();
 		productInfoService.addSave(result,entity);
 		return result;
@@ -71,8 +72,8 @@ public class ProductInfoController{
 	
 
 	@PostMapping(value="/updateSave")
-	@ApiOperation(value = "商品信息修改保存")
-	public ResultData updateSave(ProductInfo entity){
+	@ApiOperation(value = "商品轮播信息修改保存")
+	public ResultData updateSave(@ModelAttribute ProductInfo entity){
 		ResultData result=new ResultData();
 		productInfoService.updateSave(result,entity);
 		return result;
@@ -80,7 +81,7 @@ public class ProductInfoController{
 	
 
 	@GetMapping(value="/findById")
-	@ApiOperation(value = "商品信息详情")
+	@ApiOperation(value = "商品轮播信息详情")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id",value = "主键id",dataType = "Integer", paramType = "query",required = true)
 	})
@@ -92,7 +93,7 @@ public class ProductInfoController{
 	
 
 	@PostMapping(value="/deleteById")
-	@ApiOperation(value = "商品信息根据id删除")
+	@ApiOperation(value = "商品轮播信息根据id删除")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id",value = "主键id",dataType = "Integer", paramType = "query",required = true)
 	})
@@ -103,9 +104,9 @@ public class ProductInfoController{
 	}
 
 	@PostMapping(value="/deleteByIds")
-    @ApiOperation(value = "商品信息根据id删除多个")
+    @ApiOperation(value = "商品轮播信息根据id删除多个")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id",value = "主键id",dataType = "Integer", paramType = "query",required = true)
+            @ApiImplicitParam(name = "ids",value = "主键id",dataType = "Integer", paramType = "query",required = true)
     })
 	public ResultData deleteByIds(String ids){		
 		ResultData result=new ResultData();

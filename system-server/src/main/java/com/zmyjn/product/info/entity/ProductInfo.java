@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 
 /**
- * @Description: 商品信息
- * @author: Administrator
- * @date: 2018-11-18 12:38:46
+ * @Description: 商品轮播信息
+ * @author: LIYINGJIAN
+ * @date: 2018-12-23 10:25:04
  */
 public class ProductInfo implements Serializable{
 	
@@ -28,9 +28,29 @@ public class ProductInfo implements Serializable{
 	 */
 	private String name;	
 	/**
+	 * 商品关键字
+	 */
+	private String keywords;	
+	/**
+	 * 商品型号
+	 */
+	private String model;	
+	/**
 	 * 商品价格
 	 */
 	private String price;	
+	/**
+	 * 商品参数
+	 */
+	private String parame;	
+	/**
+	 * 商品描述
+	 */
+	private String description;	
+	/**
+	 * 是否推荐商品（1：推荐）
+	 */
+	private String isHot;	
 	/**
 	 * 商品图片
 	 */
@@ -51,6 +71,10 @@ public class ProductInfo implements Serializable{
 	 * 类型id
 	 */
 	private Integer typeId;	
+	/**
+	 * 商品排序
+	 */
+	private Integer sort;	
 	/**
 	 * 状态（1：正常）
 	 */
@@ -103,12 +127,52 @@ public class ProductInfo implements Serializable{
  		return this.name;	
  	}	
  
+ 	public void setKeywords(String keywords){	
+ 		this.keywords=keywords;	
+ 	}	
+ 
+ 	public String getKeywords(){	
+ 		return this.keywords;	
+ 	}	
+ 
+ 	public void setModel(String model){	
+ 		this.model=model;	
+ 	}	
+ 
+ 	public String getModel(){	
+ 		return this.model;	
+ 	}	
+ 
  	public void setPrice(String price){	
  		this.price=price;	
  	}	
  
  	public String getPrice(){	
  		return this.price;	
+ 	}	
+ 
+ 	public void setParame(String parame){	
+ 		this.parame=parame;	
+ 	}	
+ 
+ 	public String getParame(){	
+ 		return this.parame;	
+ 	}	
+ 
+ 	public void setDescription(String description){	
+ 		this.description=description;	
+ 	}	
+ 
+ 	public String getDescription(){	
+ 		return this.description;	
+ 	}	
+ 
+ 	public void setIsHot(String isHot){	
+ 		this.isHot=isHot;	
+ 	}	
+ 
+ 	public String getIsHot(){	
+ 		return this.isHot;	
  	}	
  
  	public void setImage(String image){	
@@ -149,6 +213,14 @@ public class ProductInfo implements Serializable{
  
  	public Integer getTypeId(){	
  		return this.typeId;	
+ 	}	
+ 
+ 	public void setSort(Integer sort){	
+ 		this.sort=sort;	
+ 	}	
+ 
+ 	public Integer getSort(){	
+ 		return this.sort;	
  	}	
  
  	public void setStatus1(String status1){	

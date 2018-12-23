@@ -26,9 +26,9 @@ import com.zmyjn.product.info.entity.ProductInfo;
 import com.zmyjn.product.info.service.ProductInfoService;
 
 /**
- * @Description: 商品信息
- * @author: Administrator
- * @date: 2018-11-18 12:38:46
+ * @Description: 商品轮播信息
+ * @author: LIYINGJIAN
+ * @date: 2018-12-23 10:25:04
  */
 @Service
 public class ProductInfoServiceImpl extends BaseServiceImpl<ProductInfo, Integer> implements ProductInfoService{
@@ -57,9 +57,9 @@ public class ProductInfoServiceImpl extends BaseServiceImpl<ProductInfo, Integer
 		List<ProductInfo> list = productInfoMapper.list(mapSql);
 		
 		PageUtil.setPageInfo(page, list);
-//		page.setRows(list);
 
 		result.setData(list);
+		result.setCount((int) page.getTotal());
 	}
 
 	/**
