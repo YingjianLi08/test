@@ -186,9 +186,9 @@
         layer.open({
           type: 2
           ,title: '添加商品'
-          ,content: 'listform.html'
+          ,content: 'edit.html'
           ,maxmin: true
-          ,area: ['550px', '550px']
+          ,area: ['60%', '90%']
           ,btn: ['确定', '取消']
           ,yes: function(index, layero){
             //点击确认触发 iframe 内容中的按钮提交
@@ -203,6 +203,45 @@
       var type = $(this).data('type');
       active[type] ? active[type].call(this) : '';
     });
+    
+    
+    table.on("tool(LAY-app-product-list)", function(t) {
+    	
+    	
+		var i = t.data;
+		if("del" === t.event) layer.confirm("确定删除此商品信息？", function(e) {
+//			t.del(), layer.close(e)
+				admin.req({
+					url: "/sys/productinfo/deleteById",
+					type: "post",
+					data: {id:i.id},
+					done: function(data) {
+						layui.table.reload('LAY-app-product-list'); //重载表格
+				    layer.close(e); //再执行关闭 
+					}
+				});	
+		});
+		else if("edit" === t.event) {
+			$(t.tr);
+			layer.open({
+				type: 2,
+				title: "编辑商品信息",
+				content: "../../../views/product/list/edit.html?id=" + i.id,
+				maxmin: true,
+				area: ["60%", "90%"],
+				btn: ["确定", "取消"],
+				yes: function(e, i) {
+					var submit = i.find('iframe').contents().find("#layuiadmin-app-form-submit");
+        	submit.click();
+				},
+				success: function(t, e) {
+//					var n = t.find("iframe").contents().find("#layuiadmin-app-form-tags").click();
+//					n.find('input[name="tags"]').val(i.tags)
+				}
+			})
+    }
+  });
+    	
 
   });
   </script>

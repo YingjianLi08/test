@@ -9,7 +9,6 @@ layui.use(['carousel', 'jquery', 'element'], function() {
 		
 		$.ajax({
 			url: "/index/carouselinfo/list",
-			// url:"/sys/carouselinfo/list",
 			type: "get",
 			async: true,
 			data: {groupId:1},
@@ -17,7 +16,7 @@ layui.use(['carousel', 'jquery', 'element'], function() {
 
 				var array = data.data;
 				$.each(array, function(i, v) {
-					$(".imgH:parent").append('<div><img style="width: 100%" src="' + filePreview + v.src + '"></div>');
+					$(".imgH:parent").append('<div><img style="width: 100%" src="' + v.src + '"></div>');
 				});
 
 				//建造实例
@@ -41,7 +40,7 @@ layui.use(['carousel', 'jquery', 'element'], function() {
 			}
 		});
 		
-		carouselData2();
+		//carouselData2();
 		
 		
 	});
@@ -73,18 +72,17 @@ layui.use(['carousel', 'jquery', 'element'], function() {
 			data: {groupId:2},
 			success: function(data) {
 				
-//				var image = $("#image-products2");
-				var image = document.getElementById("image-products2");
 				$.each(data.data, function(i,v) {
 					var dd = '<div class="layui-col-xs6 layui-col-sm6 layui-col-md3">'+
 							'<div class="img-txt">'+
-							'<img style="width: 100%;" src="res/static/images/products/a18/a18-80cm/1.jpg" alt="">'+
-							'<h3>A18</h3>'+
+							'<img style="width: 100%;" src="'+ v.src +'" alt="">'+
+							'<h3>'+v.name+'</h3>'+
 							'</div>'+
 							'</div>';
-					image.append(dd);
+					$("#image-products2:parent").append(dd);
 					
 				});
+				
 			}
 		});
 	}

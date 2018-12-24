@@ -166,6 +166,9 @@ body{font: 12px/1.5 PingFangSC-Regular,Tahoma,'Microsoft Yahei',sans-serif;}
 .case-content .imgtext-flow .layui-flow-more{position: absolute; bottom: 0px; left:50%; margin-left: -48px;}
 /*end-case*/
 
+/*product*/
+
+/*end-product*/
 
 @media only screen and (max-width: 1024px){
   .case-content .banner{margin:30px auto;}

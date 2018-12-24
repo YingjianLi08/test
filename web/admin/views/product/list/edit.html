@@ -22,57 +22,57 @@
             
             <div class="layui-form" lay-filter="">
             	
-            	
-              <div class="layui-form-item">
-                <label class="layui-form-label">我的角色</label>
-                <!--<div class="layui-input-inline">
-                  <select name="role" lay-verify="">
-                    <option value="1" selected>超级管理员</option>
-                    <option value="2" disabled>普通管理员</option>
-                    <option value="3" disabled>审核员</option>
-                    <option value="4" disabled>编辑人员</option>
-                  </select> 
-                </div>-->
-                
-                <div class="layui-form-mid layui-word-aux"><!--当前角色不可更改为其它角色-->超级管理员</div>
-                
+            	<div class="layui-form-item">
+                <label class="layui-form-label">商品编号</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="code" value="" placeholder="商品编号" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux"></div>
               </div>
+            	
               <div class="layui-form-item">
                 <label class="layui-form-label">商品名称</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="username" value="" readonly class="layui-input layui-display">
+                  <input type="text" name="name" value="" placeholder="商品名称" class="layui-input">
                 </div>
-                <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+                <div class="layui-form-mid layui-word-aux"></div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">商品型号</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="model" value="" autocomplete="off" placeholder="请输入商品型号" class="layui-input">
+                  <input type="text" name="model" value="" autocomplete="off" placeholder="商品型号" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品价格</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="price" value="" autocomplete="off" placeholder="商品价格" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">商品条形码</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="barCode" value=""  autocomplete="off" placeholder="请输入商品条形码" class="layui-input">
+                  <input type="text" name="barCode" value=""  autocomplete="off" placeholder="商品条形码" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">是否推荐</label>
                 <div class="layui-input-block">
-                  <input type="radio" name="isHot" value="1" title="是">
+                  <input type="radio" name="isHot" value="1" title="是" checked="checked">
                   <input type="radio" name="isHot" value="0" title="否" >
                 </div>
               </div>
               <div class="layui-form-item">
                 <label class="layui-form-label">商品图片</label>
                 <div class="layui-input-inline">
-                  <input name="image" id="LAY_avatarSrc" placeholder="商品图片地址" value="" class="layui-input">
+                  <input name="image" id="LAY_productSrc" placeholder="商品图片" value="" class="layui-input">
+                  <div class="layui-form-mid layui-word-aux">建议上传分辨率为 420 * 280的图片</div>
                 </div>
                 <div class="layui-input-inline layui-btn-container" style="width: auto;">
-                  <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+                  <button type="button" class="layui-btn layui-btn-primary" id="LAY_productUpload">
                     <i class="layui-icon">&#xe67c;</i>上传图片
                   </button>
-                  <button class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
+                  <button class="layui-btn layui-btn-primary" layadmin-event="productPreview">查看图片</button >
                 </div>
              </div>
               <div class="layui-form-item">
@@ -81,11 +81,17 @@
                   <input type="text" name="sort" value=""  autocomplete="off"  placeholder="排序" class="layui-input">
                 </div>
               </div>
+              <div class="layui-form-item">
+					      <label class="layui-form-label">发布状态</label>
+					      <div class="layui-input-inline">
+					        <input type="checkbox" lay-verify="required" lay-filter="status" name="status1" lay-skin="switch" lay-text="已发布|待发布" checked>
+					      </div>
+					    </div>
               
                <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">商品关键字</label>
                 <div class="layui-input-block">
-                  <textarea name="keywords" placeholder="请输入商品关键字" class="layui-textarea"></textarea>
+                  <textarea name="keywords" placeholder="商品关键字" class="layui-textarea"></textarea>
                 </div>
               </div>
               
@@ -134,7 +140,7 @@
               
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <button class="layui-btn" lay-submit lay-filter="setmyinfo">提交</button>
+                  <button class="layui-btn" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit">提交</button>
                 </div>
               </div>
             </div>
@@ -153,10 +159,12 @@
 	    base: '../../../js/' //静态资源所在路径
 	}).extend({
 	    index: 'lib/index' //主入口模块
-	}).use(['index','layedit','form','admin'],function(){
+	}).use(['index','layedit','form','admin','upload'],function(){
 		var layedit = layui.layedit,
 		form = layui.form,
-		admin = layui.admin;
+		admin = layui.admin,
+		$ = layui.$,
+		upload = layui.upload;
 		
 		// 编辑器上传接口
 		layedit.set({
@@ -172,34 +180,120 @@
   			tool: ['face','image','strong', 'italic', 'underline','del', '|', 'left','center','right','link','unlink','|','code' ]
   		});
   		
-  		// 监听提交事件
-  		form.on("submit(setmyinfo)", function(t) {
+		var id = getQueryString("id");
 		
+		if(id!=null){
+			
+			admin.req({
+				url: "/sys/productinfo/init",
+				type: "get",
+				data: {id:id},
+				done: function(data) {
+						$("input[name='code']").val(data.data.code);
+						$("input[name='name']").val(data.data.name);
+						$("input[name='price']").val(data.data.price);
+						$("input[name='model']").val(data.data.model);
+						$("input[name='barCode']").val(data.data.barCode);
+						$("input[name='image']").val(data.data.image);
+						$("input[name='sort']").val(data.data.sort);
+						$("input[name='keywords']").val(data.data.keywords);
+						$("input[name='description']").val(data.data.description);
+				}
+			});	
+		}
+  		
+  		// 监听提交事件
+		form.on("submit(layuiadmin-app-form-submit)", function(t) {
+		
+		if(t.field.status1== "on"){
+    		t.field.status1="1"
+		}else{
+			t.field.status1="0"
+		}
+    	
 		t.field.description = layedit.getContent(description);//商品描述
 		
-		admin.req({
-			url: "/sys/sysuser/updataUserPassword",
-			type: "post",
-			data: t.field,
-			done: function(data) {
-				if(data.result){
-					layer.msg(data.msg,{
-						time: 2000
-					},function(){
-						window.location.reload();
-					});
-					
-				}else{
-					layer.msg(data.msg, {
-					    offset: '15px'
-					    ,icon: 2
-					  });
-				}
-			}
-		})
 		
-		//return layer.msg(JSON.stringify(t.field)), !1
+		if(id !=null ){
+				//修改
+			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引  
+			t.field.id = id;
+			admin.req({
+				url: "/sys/productinfo/updateSave",
+				type: "post",
+				data: t.field,
+				done: function(data) {
+					if(data.result){
+						layer.msg(data.msg,{
+							time: 2000
+						},function(){
+							parent.layui.table.reload('LAY-app-product-list'); //重载表格
+				      	parent.layer.close(index); //再执行关闭 
+						});
+						
+					}else{
+						layer.msg(data.msg, {
+						    offset: '15px'
+						    ,icon: 2
+						  });
+					}
+				}
+			});
+		}else{
+			// 新增
+			admin.req({
+				url: "/sys/productinfo/addSave",
+				type: "post",
+				data: t.field,
+				done: function(data) {
+					if(data.result){
+						layer.msg(data.msg,{
+							time: 2000
+						},function(){
+							if(index!=null){
+								parent.layui.table.reload('LAY-app-product-list'); //重载表格
+				      	parent.layer.close(index); //再执行关闭 
+							}else{
+								window.location.reload();
+							}
+						});
+						
+					}else{
+						layer.msg(data.msg, {
+						    offset: '15px'
+						    ,icon: 2
+						  });
+					}
+				}
+			});
+		}
+		
 	});
+	
+	
+	// 图片上传
+	var carouse = $("#LAY_productSrc");
+    upload.render({
+			url: "/file/fileManager/upload",
+			elem: "#LAY_productUpload",
+			done: function(t) {
+				carouse.val(t.url);
+			}
+		}), admin.events.productPreview = function(t) {
+				// 查看图片
+				var i = carouse.val();
+				layer.photos({
+					photos: {
+						title: "查看图片",
+						data: [{
+							src: i
+						}]
+					},
+					shade: .01,
+					closeBtn: 1,
+					anim: 5
+				})
+			}
   		
 	});
   </script>

@@ -28,7 +28,7 @@ import com.zmyjn.product.info.entity.ProductInfo;
  */
 @RestController
 @Api(value = "商品轮播信息",tags = "商品轮播信息接口")
-@RequestMapping("/productinfo")
+@RequestMapping("sys/productinfo")
 public class ProductInfoController{
 	
 	private final  LogUtil logger = LogUtil.getLogger(this.getClass());
