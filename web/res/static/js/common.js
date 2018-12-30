@@ -3,7 +3,7 @@ layui.define(["form", "upload","jquery"], function(t) {
     var $ = layui.jquery;
 
     $.ajax({
-        url:"/index/syssite/findById",
+        url:"/sys/syssite/findById",
         type:"get",
         async:true,
         data: {id:1},

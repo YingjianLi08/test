@@ -17,12 +17,12 @@
         <div class="layui-card">
           <div class="layui-card-header">网站设置</div>
           <div class="layui-card-body" pad15>
-            
             <div class="layui-form" wid100 lay-filter="">
+              <input type="hidden" name="id" value="1"  class="layui-input">
               <div class="layui-form-item">
                 <label class="layui-form-label">网站名称</label>
                 <div class="layui-input-block" style="width: 600px;">
-                  <input type="text" name="sitename" value="" placeholder="请输入网站名称" class="layui-input">
+                  <input type="text" name="siteName" value="" placeholder="请输入网站名称" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -125,7 +125,8 @@
    		,type:"get"
    		,done:function(res){
    			if(res.result){
-   				$("input[name='sitename']").val(res.data.siteName);
+                $("input[name='id']").val(res.data.id);
+   				$("input[name='siteName']").val(res.data.siteName);
    				$("input[name='domain']").val(res.data.domain);
    				$("input[name='title']").val(res.data.title);
    				$("input[name='keywords']").val(res.data.keywords);
@@ -135,7 +136,6 @@
    				$("input[name='email']").val(res.data.email);
    				$("input[name='copyright']").val(res.data.copyright);
    				$("input[name='beian']").val(res.data.beian);
-   				$("input[name='email']").val(res.data.email);
    				$("input[name='email']").val(res.data.email);
    			}
    		}

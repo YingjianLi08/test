@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * @Description: 系统网站信息
  * @author: Administrator
- * @date: 2018-11-17 21:03:08
+ * @date: 2018-12-17 15:41:53
  */
 public class SysSite implements Serializable{
 	
@@ -59,6 +59,10 @@ public class SysSite implements Serializable{
 	 * 网站备案
 	 */
 	private String beian;	
+	/**
+	 * 类型
+	 */
+	private String type;	
 	/**
 	 * 状态
 	 */
@@ -173,6 +177,14 @@ public class SysSite implements Serializable{
  
  	public String getBeian(){	
  		return this.beian;	
+ 	}	
+ 
+ 	public void setType(String type){	
+ 		this.type=type;	
+ 	}	
+ 
+ 	public String getType(){	
+ 		return this.type;	
  	}	
  
  	public void setStatus1(String status1){	

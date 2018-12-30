@@ -28,7 +28,7 @@ import com.zmyjn.sys.site.service.SysSiteService;
 /**
  * @Description: 系统网站信息
  * @author: Administrator
- * @date: 2018-11-17 21:03:08
+ * @date: 2018-12-17 15:41:53
  */
 @Service
 public class SysSiteServiceImpl extends BaseServiceImpl<SysSite, Integer> implements SysSiteService{
@@ -57,9 +57,9 @@ public class SysSiteServiceImpl extends BaseServiceImpl<SysSite, Integer> implem
 		List<SysSite> list = sysSiteMapper.list(mapSql);
 		
 		PageUtil.setPageInfo(page, list);
-//		page.setRows(list);
 
 		result.setData(list);
+		result.setCount((int) page.getTotal());
 	}
 
 	/**

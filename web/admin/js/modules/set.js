@@ -41,8 +41,26 @@ layui.define(["form", "upload","admin"], function(t) {
 		}
 	}), n.on("submit(set_website)", function(t) {
 		// 修改网站设置
-		return e.msg(JSON.stringify(t.field)), !1
-	}), n.on("submit(set_system_email)", function(t) {
+		//return e.msg(JSON.stringify(t.field)), !1
+        a.req({
+            url: "/sys/syssite/updateSave",
+            type: "post",
+            data: t.field,
+            done: function(data) {
+                if(data.result){
+                    layer.msg(data.msg,{
+                        time: 2000
+                    },function(){
+                        window.location.reload();
+                    });
+
+                }
+            }
+        });
+
+
+
+    }), n.on("submit(set_system_email)", function(t) {
 		// 修改邮箱设置
 		return e.msg(JSON.stringify(t.field)), !1
 	}), n.on("submit(setmyinfo)", function(t) {

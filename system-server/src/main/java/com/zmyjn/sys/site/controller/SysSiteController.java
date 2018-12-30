@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ import com.zmyjn.sys.site.entity.SysSite;
 /**
  * @Description: 系统网站信息
  * @author: Administrator
- * @date: 2018-11-17 21:03:08
+ * @date: 2018-12-17 15:41:53
  */
 @RestController
 @Api(value = "系统网站信息",tags = "系统网站信息接口")
@@ -41,7 +42,7 @@ public class SysSiteController{
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "searchKeys",value = "关键词",dataType = "string", paramType = "query",required = false)
 	})
-	public ResultData list(Page<SysSite> page,String searchKeys){
+	public ResultData list(@ModelAttribute Page<SysSite> page,String searchKeys){
 		ResultData result=new ResultData();
 		sysSiteService.list(result,page,searchKeys);
 
@@ -63,7 +64,7 @@ public class SysSiteController{
 
 	@PostMapping(value="/addSave")
 	@ApiOperation(value = "系统网站信息添加保存")
-	public ResultData addSave(SysSite entity){
+	public ResultData addSave(@ModelAttribute SysSite entity){
 		ResultData result=new ResultData();
 		sysSiteService.addSave(result,entity);
 		return result;
@@ -72,7 +73,7 @@ public class SysSiteController{
 
 	@PostMapping(value="/updateSave")
 	@ApiOperation(value = "系统网站信息修改保存")
-	public ResultData updateSave(SysSite entity){
+	public ResultData updateSave(@ModelAttribute SysSite entity){
 		ResultData result=new ResultData();
 		sysSiteService.updateSave(result,entity);
 		return result;
@@ -105,7 +106,7 @@ public class SysSiteController{
 	@PostMapping(value="/deleteByIds")
     @ApiOperation(value = "系统网站信息根据id删除多个")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id",value = "主键id",dataType = "Integer", paramType = "query",required = true)
+            @ApiImplicitParam(name = "ids",value = "主键id",dataType = "Integer", paramType = "query",required = true)
     })
 	public ResultData deleteByIds(String ids){		
 		ResultData result=new ResultData();

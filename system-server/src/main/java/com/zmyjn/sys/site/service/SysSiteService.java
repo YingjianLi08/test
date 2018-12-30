@@ -9,7 +9,7 @@ import com.zmyjn.sys.site.entity.SysSite;
 /**
  * @Description: 系统网站信息
  * @author: Administrator
- * @date: 2018-11-17 21:03:08
+ * @date: 2018-12-17 15:41:53
  */
 public interface SysSiteService extends BaseService<SysSite, Integer> {
 	

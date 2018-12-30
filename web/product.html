@@ -267,58 +267,70 @@
   </div>
   <!-- end-footer -->
 
-<script type="text/javascript">
-layui.config({
-  base: 'res/static/js/' //你存放新模块的目录，注意，不是layui的模块目录
-}).use(['common','flow','laytpl','element'],function(){
-  var common = layui.common,flow = layui.flow,laytpl = layui.laytpl,element = layui.element,$ = layui.$;
+  <script type="text/javascript">
+
+      layui.use(['carousel', 'jquery', 'element'], function() {
+
+      });
+  </script>
+<!--<script type="text/javascript">-->
+<!--layui.config({-->
+  <!--base: 'res/static/js/' //你存放新模块的目录，注意，不是layui的模块目录-->
+<!--}).use(['common','flow','laytpl','element'],function(){-->
+  <!--var common = layui.common,flow = layui.flow,laytpl = layui.laytpl,element = layui.element,$ = layui.$;-->
 
 
-  // 模版引擎导入
+  <!--$(function(){-->
+      <!--alert(1);-->
+    <!--console.log(1);-->
+  <!--});-->
 
-  var data = {"code":0,"msg":"比喻","last_page":2,"list_page":1000,"data":[{"text":"你好","images":"res/static/images/al_img3.jpg"},{"text":"你好","images":"res/static/images/al_img4.jpg"},{"text":"你好","images":"res/static/images/al_img5.jpg"},{"text":"你好","images":"res/static/images/al_img6.jpg"}]}
-  laytpl.config({
-    open: '<%',
-    close: '%>'
-  });
 
-    flow.load({
-      elem: '#item-list-box'
-      ,isAuto :  false
-      ,isLazyimg: true
-      ,mb:100
-      ,done: function(page,next){
-        var lis = [];
-         var getTpl = zonesTpl.innerHTML;
-          var img = new Image();
-          layui.each(data.data,function(index,item){  
-            laytpl(getTpl).render(item,function(html){
-                lis.push(html); 
-            });
-          });
-          // common.waterfall(); 
-          if(page < data.data.last_page){
-            next(lis.join(''),true);
-          }else{
-            next(lis.join(''),false);
-          }
-          element.init()
-      }
-    })
-  // window.onload = function(){
-  //   common.waterfall(); 
-  // }
-  $('.app-header-menuicon').on('click',function(){
-    $('.header-down-nav').toggleClass('down-nav')
-  })
-  $('.case-content .banner .img-text').on('click',function(){ 
-    if($(this).hasClass('active')){
-      $(this).removeClass('active').siblings('.img-text').addClass('active')
-    }else{
-      $(this).addClass('active').siblings('.img-text').removeClass('active')
-    }
-  })
-});
-</script>
+  <!--// 模版引擎导入-->
+
+  <!--var data = {"code":0,"msg":"比喻","last_page":2,"list_page":1000,"data":[{"text":"你好","images":"res/static/images/al_img3.jpg"},{"text":"你好","images":"res/static/images/al_img4.jpg"},{"text":"你好","images":"res/static/images/al_img5.jpg"},{"text":"你好","images":"res/static/images/al_img6.jpg"}]}-->
+  <!--laytpl.config({-->
+    <!--open: '<%',-->
+    <!--close: '%>'-->
+  <!--});-->
+
+    <!--flow.load({-->
+      <!--elem: '#item-list-box'-->
+      <!--,isAuto :  false-->
+      <!--,isLazyimg: true-->
+      <!--,mb:100-->
+      <!--,done: function(page,next){-->
+        <!--var lis = [];-->
+         <!--var getTpl = zonesTpl.innerHTML;-->
+          <!--var img = new Image();-->
+          <!--layui.each(data.data,function(index,item){  -->
+            <!--laytpl(getTpl).render(item,function(html){-->
+                <!--lis.push(html); -->
+            <!--});-->
+          <!--});-->
+          <!--// common.waterfall(); -->
+          <!--if(page < data.data.last_page){-->
+            <!--next(lis.join(''),true);-->
+          <!--}else{-->
+            <!--next(lis.join(''),false);-->
+          <!--}-->
+          <!--element.init()-->
+      <!--}-->
+    <!--})-->
+  <!--// window.onload = function(){-->
+  <!--//   common.waterfall(); -->
+  <!--// }-->
+  <!--$('.app-header-menuicon').on('click',function(){-->
+    <!--$('.header-down-nav').toggleClass('down-nav')-->
+  <!--})-->
+  <!--$('.case-content .banner .img-text').on('click',function(){ -->
+    <!--if($(this).hasClass('active')){-->
+      <!--$(this).removeClass('active').siblings('.img-text').addClass('active')-->
+    <!--}else{-->
+      <!--$(this).addClass('active').siblings('.img-text').removeClass('active')-->
+    <!--}-->
+  <!--})-->
+<!--});-->
+<!--</script>-->
 </body>
 </html>
