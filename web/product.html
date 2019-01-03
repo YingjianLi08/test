@@ -81,7 +81,7 @@
    <div class="banner">
     <div class="cont w1000">
       <div class="title">
-        <h3>MY<br />BLOG</h3>
+        <h3>MY<br />PRODUCT</h3>
         <h4>well-balanced heart</h4>
       </div>
       <div class="amount">
@@ -94,101 +94,145 @@
   
    <div class="content">
     <div class="cont w1000">
-      <div class="title">
-        <span class="layui-breadcrumb" lay-separator="|">
-          <a href="javascript:;" class="active">设计文章</a>
-          <a href="javascript:;">前端文章</a>
-          <a href="javascript:;">旅游杂记</a>
-        </span>
-      </div>
-      <div class="list-item">
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <!--<div class="img"><img src="res/images/product/sy/sy_img1.jpg" alt=""></div>-->
-             		<div class="img"><img src="/res/static/images/products/sy/sy_img1.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details.html" class="go-icon"></a>
+      
+      <!--<div class="title">-->
+        <!--<span class="layui-breadcrumb" lay-separator="|">-->
+          <!--<a href="javascript:;" class="active">设计文章</a>-->
+          <!--<a href="javascript:;">前端文章</a>-->
+          <!--<a href="javascript:;">旅游杂记</a>-->
+        <!--</span>-->
+      <!--</div>-->
+
+
+      <script id="demo1" type="text/html">
+
+        <div class="list-item">
+          {{#  layui.each(d, function(index, item){ }}
+          <div class="item">
+            <div class="layui-fluid">
+              <div class="layui-row">
+                <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                  <div class="img"> <a href="details.html"><img src="{{ item.image }}" alt=""></a></div>
                 </div>
-            </div>
-            </div>
-           </div>
-        </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/res/static/images/products/sy/sy_img2.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details.html" class="go-icon"></a>
+                <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                  <div class="item-cont">
+                    <h3>{{ item.name }}<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
+                    <h5>{{ item.model }}</h5>
+                    <p>{{ item.description }}</p>
+                    <a href="details.html" class="go-icon"></a>
+                  </div>
                 </div>
-            </div>
-            </div>
-           </div>
-        </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/res/static/images/products/sy/sy_img3.jpg" alt=""></div>
               </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details.html" class="go-icon"></a>
-                </div>
             </div>
-            </div>
-           </div>
+          </div>
+          {{#  }); }}
         </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/res/static/images/products/sy/sy_img4.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details.html" class="go-icon"></a>
-                </div>
-            </div>
-            </div>
-           </div>
-        </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/res/static/images/products/sy/sy_img5.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details.html" class="go-icon"></a>
-                </div>
-            </div>
-            </div>
-           </div>
-        </div>
-      </div>
+
+        <!--<ul>-->
+          <!--{{#  layui.each(d, function(index, item){ }}-->
+          <!--<li>-->
+            <!--<span>{{ item.image }}123</span>-->
+            <!--<span>{{ item.name }}：</span>-->
+            <!--<span>{{ item.description || '' }}</span>-->
+          <!--</li>-->
+          <!--{{#  }); }}-->
+          <!--{{#  if(d.length === 0){ }}-->
+          <!--无数据-->
+          <!--{{#  } }}-->
+        <!--</ul>-->
+      </script>
+      <div id="view"></div>
+
+
+
+      <!--<div class="list-item">-->
+        <!--<div class="item">-->
+          <!--<div class="layui-fluid">-->
+            <!--<div class="layui-row">-->
+              <!--<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">-->
+                <!--&lt;!&ndash;<div class="img"><img src="res/images/product/sy/sy_img1.jpg" alt=""></div>&ndash;&gt;-->
+             		<!--<div class="img"><img src="/res/static/images/products/sy/sy_img1.jpg" alt=""></div>-->
+              <!--</div>-->
+              <!--<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">-->
+                <!--<div class="item-cont">-->
+                  <!--<h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>-->
+                  <!--<h5>设计文章</h5>-->
+                  <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
+                  <!--<a href="details.html" class="go-icon"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+           <!--</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+          <!--<div class="layui-fluid">-->
+            <!--<div class="layui-row">-->
+              <!--<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">-->
+                <!--<div class="img"><img src="/res/static/images/products/sy/sy_img2.jpg" alt=""></div>-->
+              <!--</div>-->
+              <!--<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">-->
+                <!--<div class="item-cont">-->
+                  <!--<h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>-->
+                  <!--<h5>设计文章</h5>-->
+                  <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
+                  <!--<a href="details.html" class="go-icon"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+           <!--</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+          <!--<div class="layui-fluid">-->
+            <!--<div class="layui-row">-->
+              <!--<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">-->
+                <!--<div class="img"><img src="/res/static/images/products/sy/sy_img3.jpg" alt=""></div>-->
+              <!--</div>-->
+              <!--<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">-->
+                <!--<div class="item-cont">-->
+                  <!--<h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>-->
+                  <!--<h5>设计文章</h5>-->
+                  <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
+                  <!--<a href="details.html" class="go-icon"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+           <!--</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+          <!--<div class="layui-fluid">-->
+            <!--<div class="layui-row">-->
+              <!--<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">-->
+                <!--<div class="img"><img src="/res/static/images/products/sy/sy_img4.jpg" alt=""></div>-->
+              <!--</div>-->
+              <!--<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">-->
+                <!--<div class="item-cont">-->
+                  <!--<h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>-->
+                  <!--<h5>设计文章</h5>-->
+                  <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
+                  <!--<a href="details.html" class="go-icon"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+           <!--</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+          <!--<div class="layui-fluid">-->
+            <!--<div class="layui-row">-->
+              <!--<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">-->
+                <!--<div class="img"><img src="/res/static/images/products/sy/sy_img5.jpg" alt=""></div>-->
+              <!--</div>-->
+              <!--<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">-->
+                <!--<div class="item-cont">-->
+                  <!--<h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>-->
+                  <!--<h5>设计文章</h5>-->
+                  <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
+                  <!--<a href="details.html" class="go-icon"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+           <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
       <div id="demo" style="text-align: center;"></div>
     </div>
   </div>
@@ -211,7 +255,6 @@
  
   </script>
 
-  
 
   <!-- footer -->
   <div class="footer">
@@ -269,7 +312,32 @@
 
   <script type="text/javascript">
 
-      layui.use(['carousel', 'jquery', 'element'], function() {
+      layui.use(['carousel', 'jquery', 'element','laytpl'], function() {
+
+          var laytpl = layui.laytpl,$=layui.$;
+
+          var data;
+          // var data = { //数据
+          //     "title":"Layui常用模块"
+          //     ,"list":[{"modname":"弹层","alias":"layer","site":"layer.layui.com"},{"modname":"表单","alias":"form"}]
+          // }
+          $.ajax({
+              url:"/index/productinfo/list",
+              type:"get",
+              async:false,
+              data: {id:1},
+              success : function(result) {
+                  console.log(result.data);
+                  data = result.data;
+              }
+          });
+
+          var getTpl = demo1.innerHTML
+              ,view = document.getElementById('view');
+          laytpl(getTpl).render(data, function(html){
+              view.innerHTML = html;
+          });
+
 
       });
   </script>

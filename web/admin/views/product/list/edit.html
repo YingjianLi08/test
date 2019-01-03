@@ -91,7 +91,8 @@
                <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">商品关键字</label>
                 <div class="layui-input-block">
-                  <textarea name="keywords" placeholder="商品关键字" class="layui-textarea"></textarea>
+                  <!--<textarea name="keywords" id="keywords" placeholder="商品关键字" class="layui-textarea"></textarea>-->
+                    <input type="text" name="keywords" value=""  placeholder="商品关键字" class="layui-input">
                 </div>
               </div>
               
@@ -99,7 +100,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">商品描述</label>
                 <div class="layui-input-block">
-                  <textarea id="description" name="description" style="display: none;" ></textarea>
+                  <textarea id="description" id="description" name="description" style="display: none;" ></textarea>
                 </div>
               </div>
               
@@ -177,8 +178,9 @@
 		//商品描述编辑器
   		var description = layedit.build('description',{
   			height: 180,
-  			tool: ['face','image','strong', 'italic', 'underline','del', '|', 'left','center','right','link','unlink','|','code' ]
+  			tool: ['face','image','strong', 'italic', 'underline','del', '|', 'left','center','right','link','unlink','|','code' ],
   		});
+
   		
 		var id = getQueryString("id");
 		
@@ -197,7 +199,9 @@
 						$("input[name='image']").val(data.data.image);
 						$("input[name='sort']").val(data.data.sort);
 						$("input[name='keywords']").val(data.data.keywords);
-						$("input[name='description']").val(data.data.description);
+						//$("input[name='description']").text(data.data.description);
+                        $("#description").val(data.data.description);
+                        layedit.setContent(data.data.description)
 				}
 			});	
 		}
