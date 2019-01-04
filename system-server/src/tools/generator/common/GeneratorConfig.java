@@ -30,7 +30,14 @@ public class GeneratorConfig {
 	public String className; // 类名称
 	public String lowerClassName; // 所有小写的类名称
 	public String firstLowerClassName; //首字母小写的类名称
-	
+
+	public String requestPrefix ;//链接前缀
+
+	/*html名称*/
+	public String listHtmlTitle; // list页面标题
+	public String addHtmlTitle; // add页面标题
+	public String editHtmlTitle; // edit页面标题
+
 	/*是否创建：1 创建，0 不创建*/
 	public String controllerFlag;
 	public String serviceFlag;
@@ -38,7 +45,8 @@ public class GeneratorConfig {
 	public String mapperXmlFlag;
 	public String entityFlag;
 	public String outFlag;
-	
+	public String htmlFlag;
+
 	public String testFlag;
 	
 	/**

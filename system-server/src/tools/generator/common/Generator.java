@@ -10,10 +10,7 @@ import java.util.Map;
 import common.db.ColumnEntity;
 import common.db.JdbcConnection;
 import common.db.TableColumnData;
-import common.sqlgen.CreaterEntity;
-import common.sqlgen.SqlCreaterInsert;
-import common.sqlgen.SqlCreaterSelect;
-import common.sqlgen.SqlCreaterUpdate;
+import common.sqlgen.*;
 import common.util.FileUtil;
 import common.util.NewIOUtil;
 import common.util.StringUtil;
@@ -41,7 +38,13 @@ public class Generator {
 	private final static String OUT_STRING = "/dto/Out.java";
 	private final static String DAO_STRING = "/dao/mapper/Mapper.java";
 	private final static String MAPPER_STRING = "/dao/mapper/Mapper.xml";
-	
+	private final static String VIEW_LIST_STRING = "/view/list.html";
+	private final static String VIEW_ADD_STRING = "/view/add.html";
+	private final static String VIEW_EDIT_STRING = "/view/edit.html";
+    private final static String JS_LIST_STRING = "/js/list.js";
+    private final static String JS_ADD_STRING = "/js/add.js";
+    private final static String JS_EDIT_STRING = "/js/edit.js";
+
 	private final static String YES = "1";
 	private final static String FSP = File.separator;
 	
@@ -85,6 +88,12 @@ public class Generator {
 		this.createService(SERVICE_STRING);
 		this.createServiceImpl(SERVICEIMPL_STRING);
 		this.createController(CONTROLLER_STRING);
+		this.createView(VIEW_LIST_STRING);
+		this.createView(VIEW_ADD_STRING);
+		this.createView(VIEW_EDIT_STRING);
+		this.createView(JS_LIST_STRING);
+		this.createView(JS_ADD_STRING);
+		this.createView(JS_EDIT_STRING);
 
 		System.out.println("------------------end generator!");
 
@@ -128,8 +137,9 @@ public class Generator {
 		replaceMap.put("firstLowerDomainObjectName",config.firstLowerClassName);
 		
 		//请求url，controller层@RequestMapping("")
-		replaceMap.put("requestMappingName", config.lowerClassName);
-		
+		//replaceMap.put("requestMappingName", config.lowerClassName);
+		replaceMap.put("requestMappingName", config.requestPrefix + "/" +config.firstLowerClassName);
+
 		//解析数据表列信息
 		TableColumnData tableData = new TableColumnData(conn, config.tableName);
 		//转换数据类型（未完成）
@@ -143,6 +153,18 @@ public class Generator {
 		setSQLData(conn,tableData,replaceMap);
 		
 		replaceMap.put("entityProperty", CreaterEntity.entity(conn, config.tableName));
+
+		// list页面
+		replaceMap.put("listHtmlTitle",config.listHtmlTitle);
+		replaceMap.put("field", CreaterHtml.list(conn, config.tableName));
+
+		// add页面
+		replaceMap.put("addHtmlTitle", config.addHtmlTitle);
+		replaceMap.put("editHtml", CreaterHtml.editHtml(conn, config.tableName));
+
+		// edit页面
+		replaceMap.put("editHtmlTitle", config.editHtmlTitle);
+		replaceMap.put("editJs", CreaterHtml.editJs(conn, config.tableName));
 
 		conn.close();
 		
@@ -236,7 +258,18 @@ public class Generator {
 			this.coreHandle(templeteFilePath);
 		}
 	}
-	
+
+	/**
+	 * 生成页面
+	 * @param templeteFilePath
+	 * @throws Exception
+	 */
+	private void createView(String templeteFilePath) throws Exception {
+		if (YES.equals(config.htmlFlag)) {
+			this.coreHandle(templeteFilePath);
+		}
+	}
+
 	private void coreHandle(String templeteFilePath) throws Exception {
 		coreHandle(templeteFilePath, true);
 	}
@@ -263,8 +296,15 @@ public class Generator {
 		}else {
 			filename +=temp.getName().substring(temp.getName().lastIndexOf("."));
 		}
-		String javaFilePath = temp.toString().replace(temp.getName(), filename);
-		
+		//String javaFilePath = temp.toString().replace(temp.getName(), filename);
+		String javaFilePath;
+		if (temp.toString().contains(".html") || temp.toString().contains(".js")){
+			// 生成html和js模版名称不变
+			javaFilePath = temp.toString();
+		}else{
+			javaFilePath = temp.toString().replace(temp.getName(), filename);
+		}
+
 		System.out.println("类型:"+templeteFile.getName());
 		System.out.println("模板文件:"+templeteFile.toString());
 		System.out.println("代码文件:"+javaFilePath);
