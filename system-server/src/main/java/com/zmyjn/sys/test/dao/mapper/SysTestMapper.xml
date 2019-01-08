@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmyjn.sys.test.dao.mapper.SysTestMapper">
+
+<!-- **************以下映射必须与数据库一致 不要更改，除非数据库改变**************** -->
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zmyjn.sys.test.entity.SysTest">
+				
+		insert into sys_test
+		(
+			id,
+			name,
+			status1,
+			remark
+		)
+		values	
+		(	
+			#{id},
+			#{name},
+			#{status1},
+			#{remark}
+		)	
+
+	</insert>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from sys_test 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="deleteByIds" parameterType="java.util.Collection">
+     	delete from sys_test 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+  	 
+  	 <delete id="logicDelete" parameterType="java.lang.Integer">
+		update sys_test set status1 = '-1' 	
+		WHERE ID=#{id}
+	</delete>
+	
+	<delete id="logicDeleteByIds" parameterType="java.util.Collection">
+     	update sys_test set status1 = '-1' 	
+     	WHERE ID IN
+     	<foreach collection="array" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> 
+  	 </delete>
+	
+	<update id="update" parameterType="com.zmyjn.sys.test.entity.SysTest" >
+			
+		update sys_test 	
+		<set> 	
+			id=#{id},
+			name=#{name},
+			status1=#{status1},
+			remark=#{remark}
+		</set> 	
+		where 
+		ID=#{id} 	
+
+	</update>
+	
+	<update id="updateWithIf" parameterType="com.zmyjn.sys.test.entity.SysTest" >
+			
+		update sys_test 	
+		<set> 	
+			<if test=" id!=null ">	
+				id=#{id},	
+			</if>	
+			<if test=" name!=null ">	
+				name=#{name},	
+			</if>	
+			<if test=" status1!=null ">	
+				status1=#{status1},	
+			</if>	
+			<if test=" remark!=null ">	
+				remark=#{remark},	
+			</if>	
+		</set>	
+		where 	
+		ID=#{id} 	
+
+	</update>
+	
+	<!-- *************************************************************************** -->
+	<!-- **************以下映射根据业务做相应调整**************** -->
+	<!-- *************************************************************************** -->
+  	
+  	<delete id="deleteByMap" parameterType="java.util.Map">
+    	delete from sys_test 	 
+    	<where>
+    		
+    	</where>
+  	</delete>
+	
+	<select id="findById" parameterType="java.lang.Integer" resultType="com.zmyjn.sys.test.entity.SysTest">
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.status1 status1,
+			a.remark remark
+		from sys_test a	
+
+		where a.Id=#{id}	
+	</select>
+
+	<select id="findListByMap" parameterType="java.util.Map" resultType="com.zmyjn.sys.test.entity.SysTest">
+		
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.status1 status1,
+			a.remark remark
+		from sys_test a	
+
+		
+		<where>
+			
+		</where>
+
+	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.zmyjn.sys.test.entity.SysTest">
+		
+		
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.status1 status1,
+			a.remark remark
+		from sys_test a	
+
+		
+		<where>
+			a.status1 != '-1'
+			<if test="searchKeys!= null ">
+				AND ( 1=2
+				<foreach collection="searchKeys" index="index" item="item" >
+					 OR a.id like #{item}
+				</foreach> 
+				)
+			</if>
+		</where>
+
+		
+	</select>
+	
+	<select id="findOneByMap" parameterType="java.util.Map" resultType="com.zmyjn.sys.test.entity.SysTest">
+				
+		select  	
+			a.id id,
+			a.name name,
+			a.status1 status1,
+			a.remark remark
+		from sys_test a	
+
+		<where>
+		
+		</where>
+		limit 1
+	</select>
+</mapper>
+	
