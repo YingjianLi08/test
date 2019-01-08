@@ -17,16 +17,16 @@ public class Main {
 
 		GeneratorConfig config = new GeneratorConfig();
 		//数据表名
-		config.tableName="sys_site";
+		config.tableName="product_info";
 
 		//类描述
-		config.description="网站信息";
+		config.description="商品信息";
 
 		//包路径
-		config.packageUrl="com.zmyjn.index.site";
+		config.packageUrl="com.zmyjn.product.info";
 
 		//类名称
-		config.className="SysSite";
+		config.className="ProductInfo";
 
 
 

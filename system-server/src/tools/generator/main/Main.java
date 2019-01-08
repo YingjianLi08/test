@@ -17,21 +17,23 @@ public class Main {
 
 		GeneratorConfig config = new GeneratorConfig();
 		//数据表名
-		config.tableName="sys_test";
+		config.tableName="product_type";
 
 		//类描述
-		config.description="测试";
+		config.description="商品类型";
 
 		//包路径
-		config.packageUrl="com.zmyjn.sys.test";
+		config.packageUrl="com.zmyjn.product.type";
 
 		//类名称
-		config.className="SysTest";
+		config.className="ProductType";
 
-		config.requestPrefix = "sys";// 请求链接前缀
-		config.listHtmlTitle = "测试管理 - 列表页面 ";
-		config.addHtmlTitle = "测试管理 - 新增页面 ";
-		config.editHtmlTitle = "测试管理 - 编辑页面 ";
+        // 请求链接前缀
+		config.requestPrefix = "sys";
+
+		config.listHtmlTitle = "商品管理 - 商品类型 - 列表页面 ";
+		config.addHtmlTitle = "商品管理 - 商品类型 - 新增页面 ";
+		config.editHtmlTitle = "商品管理 - 商品类型 - 编辑页面 ";
 
 		config.controllerFlag = YES;
 		config.serviceFlag = YES;

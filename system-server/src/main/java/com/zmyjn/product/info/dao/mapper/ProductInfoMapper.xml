@@ -13,6 +13,7 @@
 			name,
 			keywords,
 			model,
+			type_id,
 			price,
 			parame,
 			description,
@@ -21,7 +22,6 @@
 			unit,
 			bar_code,
 			stock_count,
-			type_id,
 			sort,
 			status1,
 			remark,
@@ -36,6 +36,7 @@
 			#{name},
 			#{keywords},
 			#{model},
+			#{typeId},
 			#{price},
 			#{parame},
 			#{description},
@@ -44,7 +45,6 @@
 			#{unit},
 			#{barCode},
 			#{stockCount},
-			#{typeId},
 			#{sort},
 			#{status1},
 			#{remark},
@@ -86,6 +86,7 @@
 			name=#{name},
 			keywords=#{keywords},
 			model=#{model},
+			type_id=#{typeId},
 			price=#{price},
 			parame=#{parame},
 			description=#{description},
@@ -94,7 +95,6 @@
 			unit=#{unit},
 			bar_code=#{barCode},
 			stock_count=#{stockCount},
-			type_id=#{typeId},
 			sort=#{sort},
 			status1=#{status1},
 			remark=#{remark},
@@ -124,6 +124,9 @@
 			<if test=" model!=null ">	
 				model=#{model},	
 			</if>	
+			<if test=" typeId!=null ">	
+				type_id=#{typeId},	
+			</if>	
 			<if test=" price!=null ">	
 				price=#{price},	
 			</if>	
@@ -147,9 +150,6 @@
 			</if>	
 			<if test=" stockCount!=null ">	
 				stock_count=#{stockCount},	
-			</if>	
-			<if test=" typeId!=null ">	
-				type_id=#{typeId},	
 			</if>	
 			<if test=" sort!=null ">	
 				sort=#{sort},	
@@ -197,6 +197,7 @@
 			a.name name,
 			a.keywords keywords,
 			a.model model,
+			a.type_id typeId,
 			a.price price,
 			a.parame parame,
 			a.description description,
@@ -205,7 +206,6 @@
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
-			a.type_id typeId,
 			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
@@ -227,6 +227,7 @@
 			a.name name,
 			a.keywords keywords,
 			a.model model,
+			a.type_id typeId,
 			a.price price,
 			a.parame parame,
 			a.description description,
@@ -235,7 +236,6 @@
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
-			a.type_id typeId,
 			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
@@ -262,6 +262,7 @@
 			a.name name,
 			a.keywords keywords,
 			a.model model,
+			a.type_id typeId,
 			a.price price,
 			a.parame parame,
 			a.description description,
@@ -270,7 +271,6 @@
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
-			a.type_id typeId,
 			a.sort sort,
 			a.status1 status1,
 			a.remark remark,
@@ -303,6 +303,7 @@
 			a.name name,
 			a.keywords keywords,
 			a.model model,
+			a.type_id typeId,
 			a.price price,
 			a.parame parame,
 			a.description description,
@@ -311,7 +312,6 @@
 			a.unit unit,
 			a.bar_code barCode,
 			a.stock_count stockCount,
-			a.type_id typeId,
 			a.sort sort,
 			a.status1 status1,
 			a.remark remark,

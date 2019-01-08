@@ -3,12 +3,18 @@ package com.zmyjn;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Swagger2配置类
@@ -20,6 +26,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swagger2 {
 
+    public static final String GROUP_ALL="全部";
+
     /**
      * 创建API应用
      * apiInfo() 增加API相关信息
@@ -30,12 +38,19 @@ public class Swagger2 {
      */
     @Bean
     public Docket createRestApi() {
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<Parameter>();
+        tokenPar.name("access_token").description("用户token")
+                .modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).build(); //header中的token参数非必填，传空也可以
+        pars.add(tokenPar.build());
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .apiInfo(apiInfo(GROUP_ALL))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.zmyjn"))
+                .apis(RequestHandlerSelectors.basePackage("com.zmyjn"))// 扫描该包下的所有需要在Swagger中展示的API，@ApiIgnore注解标注的除外
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .globalOperationParameters(pars);
     }
 
     /**
@@ -43,12 +58,12 @@ public class Swagger2 {
      * 访问地址：http://项目实际地址/swagger-ui.html
      * @return
      */
-    private ApiInfo apiInfo() {
+    private ApiInfo apiInfo(String moduleName) {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
-                .description("更多请关注http://www.baidu.com")
+                .title("zmyjn"+moduleName+"接口列表")
+                .description("更多请关注http://www.zmyjn.com")
                 .termsOfServiceUrl("http://www.baidu.com")
-                .contact("sunf")
+                .contact("zmyjn")
                 .version("1.0")
                 .build();
     }

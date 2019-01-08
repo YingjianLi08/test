@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 
 /**
- * @Description: 商品轮播信息
- * @author: LIYINGJIAN
- * @date: 2018-12-23 10:25:04
+ * @Description: 商品信息
+ * @author: Administrator
+ * @date: 2019-01-04 15:01:13
  */
 public class ProductInfo implements Serializable{
 	
@@ -16,7 +16,7 @@ public class ProductInfo implements Serializable{
 	
 		
 	/**
-	 * 
+	 * 主键ID
 	 */
 	private Integer id;	
 	/**
@@ -35,6 +35,10 @@ public class ProductInfo implements Serializable{
 	 * 商品型号
 	 */
 	private String model;	
+	/**
+	 * 商品类型id
+	 */
+	private Integer typeId;	
 	/**
 	 * 商品价格
 	 */
@@ -68,15 +72,11 @@ public class ProductInfo implements Serializable{
 	 */
 	private Integer stockCount;	
 	/**
-	 * 类型id
-	 */
-	private Integer typeId;	
-	/**
 	 * 商品排序
 	 */
 	private Integer sort;	
 	/**
-	 * 状态（1：正常）
+	 * 状态（0：待发布，1：正常）
 	 */
 	private String status1;	
 	/**
@@ -143,6 +143,14 @@ public class ProductInfo implements Serializable{
  		return this.model;	
  	}	
  
+ 	public void setTypeId(Integer typeId){	
+ 		this.typeId=typeId;	
+ 	}	
+ 
+ 	public Integer getTypeId(){	
+ 		return this.typeId;	
+ 	}	
+ 
  	public void setPrice(String price){	
  		this.price=price;	
  	}	
@@ -205,14 +213,6 @@ public class ProductInfo implements Serializable{
  
  	public Integer getStockCount(){	
  		return this.stockCount;	
- 	}	
- 
- 	public void setTypeId(Integer typeId){	
- 		this.typeId=typeId;	
- 	}	
- 
- 	public Integer getTypeId(){	
- 		return this.typeId;	
  	}	
  
  	public void setSort(Integer sort){	

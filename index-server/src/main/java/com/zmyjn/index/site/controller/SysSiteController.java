@@ -28,7 +28,7 @@ import com.zmyjn.index.site.entity.SysSite;
  */
 @RestController
 @Api(value = "网站信息",tags = "网站信息接口")
-@RequestMapping("index/syssite")
+@RequestMapping("sys/syssite")
 public class SysSiteController{
 	
 	private final  LogUtil logger = LogUtil.getLogger(this.getClass());

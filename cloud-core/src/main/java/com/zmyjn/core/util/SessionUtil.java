@@ -1,5 +1,6 @@
 package com.zmyjn.core.util;
 
+import com.zmyjn.core.exception.type.LoginOutExceptions;
 import com.zmyjn.core.util.jwt.JwtHelper;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
@@ -57,7 +58,8 @@ public class SessionUtil {
                 nickName = (String)tokenInfo.get("nickName");
                 mobile = (String)tokenInfo.get("mobile");
             } catch (Exception e) {
-                logger.error("系统登录超时，请重新登录！");
+                //logger.error("系统登录超时，请重新登录！");
+                throw new LoginOutExceptions("系统登录超时，请重新登录！");
             }
         }
         map.put("userId", userId);
@@ -72,7 +74,7 @@ public class SessionUtil {
      * 获取当前登录用户Id
      * @return
      */
-    public static Integer getLoginUserId(){
+    public static Integer getLoginUserId() {
 
         ServletRequestAttributes ra= (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request =  ra.getRequest();
@@ -87,7 +89,8 @@ public class SessionUtil {
                 userId = Integer.valueOf(Math.round(d) + "");
 //                userId = Integer.valueOf(tokenInfo.get("userId") + "");
             } catch (Exception e) {
-                logger.error("系统登录超时，请重新登录！");
+//                logger.error("系统登录超时，请重新登录！");
+                throw new LoginOutExceptions("系统登录超时，请重新登录！");
             }
         }
         return userId;
